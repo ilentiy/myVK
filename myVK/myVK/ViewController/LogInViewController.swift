@@ -3,19 +3,19 @@
 
 import UIKit
 
-class LogInViewController: UIViewController {
+/// Экран Авторизации
+final class LogInViewController: UIViewController {
     // MARK: IBOutlets
 
-    @IBOutlet private weak var scrollView: UIScrollView!
-    @IBOutlet private weak var loginTextField: UITextField!
-    @IBOutlet private weak var passwordTextField: UITextField!
+    @IBOutlet private var scrollView: UIScrollView!
+    @IBOutlet private var loginTextField: UITextField!
+    @IBOutlet private var passwordTextField: UITextField!
 
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        installNotificationCenter()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -40,6 +40,7 @@ class LogInViewController: UIViewController {
     // MARK: - Private methods
 
     private func setupUI() {
+        installNotificationCenter()
         loginTextField.setLeftPaddingPoints(10)
         passwordTextField.setLeftPaddingPoints(10)
     }
