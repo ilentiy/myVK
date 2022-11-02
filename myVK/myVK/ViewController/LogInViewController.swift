@@ -30,7 +30,11 @@ final class LogInViewController: UIViewController {
             if checkLogin() {
                 return true
             } else {
-                showErrorAlertController()
+                showAlertController(
+                    alertTitle: Constants.AlertText.errorTitle,
+                    message: Constants.AlertText.errorText,
+                    actionTitle: Constants.AlertText.actionText
+                )
                 return false
             }
         }
@@ -104,22 +108,5 @@ extension LogInViewController {
 
     @objc private func hideKeyboardAction() {
         scrollView.endEditing(true)
-    }
-}
-
-/// Расширение для создания AlertController
-extension LogInViewController {
-    private func showErrorAlertController() {
-        let loginErrorAlertController = UIAlertController(
-            title: Constants.AlertText.errorTitle,
-            message: Constants.AlertText.errorText,
-            preferredStyle: .alert
-        )
-        let okLoginErrorAlertControllerAction = UIAlertAction(
-            title: Constants.AlertText.actionText,
-            style: .cancel
-        )
-        loginErrorAlertController.addAction(okLoginErrorAlertControllerAction)
-        present(loginErrorAlertController, animated: true)
     }
 }

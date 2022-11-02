@@ -3,6 +3,7 @@
 
 import UIKit
 
+/// AppDelegate
 @main
 final class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(

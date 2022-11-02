@@ -149,9 +149,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="0gv-C7-k36"/>
                     <connections>
-                        <outlet property="loginTextField" destination="AxI-36-t5G" id="W9n-UG-uDf"/>
-                        <outlet property="passwordTextField" destination="hO9-S7-WRN" id="EaD-xW-aaw"/>
-                        <outlet property="scrollView" destination="2PB-Ut-6Ev" id="K0d-io-IGt"/>
+                        <outlet property="loginTextField" destination="AxI-36-t5G" id="KXP-RZ-V1q"/>
+                        <outlet property="passwordTextField" destination="hO9-S7-WRN" id="hM5-FB-Xed"/>
+                        <outlet property="scrollView" destination="2PB-Ut-6Ev" id="bJp-6a-5Kl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
