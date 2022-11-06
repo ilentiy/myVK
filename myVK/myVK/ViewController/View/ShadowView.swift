@@ -13,8 +13,6 @@ import UIKit
 
     // MARK: - IBInspectable
 
-    // MARK: - Private Properties
-
     @IBInspectable private var shadowRadius: CGFloat = 5 {
         didSet {
             setNeedsDisplay()
