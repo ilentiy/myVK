@@ -4,7 +4,17 @@
 /// Константы
 enum Constants {
     enum Identifier {
-        static let segueIdentifier = "login"
+        enum Segue {
+            static let loginSegue = "login"
+            static let photoSegue = "PhotoSegue"
+            static let unwind = "Unwind"
+        }
+
+        enum TableViewCell {
+            static let friend = "Friends"
+            static let groups = "Groups"
+            static let collection = "Photo"
+        }
     }
 
     enum Profile {

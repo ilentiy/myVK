@@ -26,7 +26,7 @@ final class LogInViewController: UIViewController {
     // MARK: - Public Methods
 
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        if identifier == Constants.Identifier.segueIdentifier {
+        if identifier == Constants.Identifier.Segue.loginSegue {
             if checkLogin() {
                 return true
             } else {
