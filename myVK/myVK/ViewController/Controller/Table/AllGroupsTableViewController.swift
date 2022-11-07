@@ -7,15 +7,20 @@ import UIKit
 final class AllGroupsTableViewController: UITableViewController {
     // MARK: - Private Property
 
-    var allGroups = groups.filter { group in
+    private(set) var allGroups = groups.filter { group in
         guard group.subscribers?.contains(ilentiy.ID) == false else { return false }
         return true
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
 }
 
-extension AllGroupsTableViewController {
-    // MARK: - Table view data source
+// MARK: - Table view data source
 
+extension AllGroupsTableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         1
     }

@@ -20,18 +20,20 @@ final class UserGroupsTableViewController: UITableViewController {
             let allGroupsController = segue.source as? AllGroupsTableViewController,
             let indexPath = allGroupsController.tableView.indexPathForSelectedRow
         else { return }
-        allGroupsController.allGroups[indexPath.row].subscribers?.append(ilentiy.ID)
-        let group = allGroupsController.allGroups[indexPath.row]
-        if !myGroups.contains(where: { $0.ID == group.ID }) {
-            myGroups.append(group)
+        let currentGroup = allGroupsController.allGroups[indexPath.row]
+        for var group in groups where group == currentGroup {
+            group.follow(id: ilentiy.ID)
+        }
+        if !myGroups.contains(where: { $0.ID == currentGroup.ID }) {
+            myGroups.append(currentGroup)
             tableView.reloadData()
         }
     }
 }
 
-extension UserGroupsTableViewController {
-    // MARK: - Table view data source
+// MARK: - Table view data source
 
+extension UserGroupsTableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         1
     }
@@ -57,7 +59,7 @@ extension UserGroupsTableViewController {
         if editingStyle == .delete {
             let currentGroup = myGroups.remove(at: indexPath.row)
             for var group in groups where group == currentGroup {
-                group.subscribers = currentGroup.subscribers?.filter { $0 != ilentiy.ID }
+                group.unfollow(id: ilentiy.ID)
             }
         }
         tableView.deleteRows(at: [indexPath], with: .left)

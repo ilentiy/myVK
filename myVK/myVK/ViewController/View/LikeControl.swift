@@ -3,7 +3,7 @@
 
 import UIKit
 
-/// Лайки
+///   Счетчик лайков под фото
 final class LikeControl: UIControl {
     // MARK: - Constants
 

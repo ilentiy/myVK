@@ -9,7 +9,7 @@ final class FriendTableViewCell: UITableViewCell {
 
     @IBOutlet private var avatarImageView: UIImageView!
     @IBOutlet private var nameLabel: UILabel!
-    @IBOutlet var shadowView: ShadowView!
+    @IBOutlet private var shadowView: ShadowView!
 
     // MARK: - Public Property
 

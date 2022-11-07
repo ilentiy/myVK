@@ -23,9 +23,9 @@ final class FriendsTableViewController: UITableViewController {
     }
 }
 
-extension FriendsTableViewController {
-    // MARK: - Table view data source
+// MARK: - Table view data source
 
+extension FriendsTableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         1
     }

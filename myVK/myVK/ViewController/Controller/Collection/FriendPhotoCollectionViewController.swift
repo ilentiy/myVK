@@ -23,10 +23,9 @@ final class FriendPhotoCollectionViewController: UICollectionViewController {
     }
 }
 
-/// UICollectionViewDataSource
-extension FriendPhotoCollectionViewController {
-    // MARK: UICollectionViewDataSource
+// MARK: UICollectionViewDataSource
 
+extension FriendPhotoCollectionViewController {
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         1
     }

@@ -15,8 +15,6 @@ enum Constants {
             static let groups = "Groups"
             static let collection = "Photo"
         }
-
-        enum CollectionViewCell {}
     }
 
     enum Profile {

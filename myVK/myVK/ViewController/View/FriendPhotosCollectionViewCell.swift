@@ -7,7 +7,7 @@ import UIKit
 final class FriendPhotosCollectionViewCell: UICollectionViewCell {
     // MARK: - IBOutlet
 
-    @IBOutlet var photoImageView: UIImageView!
+    @IBOutlet private var photoImageView: UIImageView!
 
     // MARK: - Public Methods
 
