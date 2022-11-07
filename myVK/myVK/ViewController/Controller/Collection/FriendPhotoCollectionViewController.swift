@@ -5,7 +5,7 @@ import UIKit
 
 /// экран с фотографиями друга
 final class FriendPhotoCollectionViewController: UICollectionViewController {
-    // MARK: - Private Methods
+    // MARK: - Public Property
 
     var user: User?
 

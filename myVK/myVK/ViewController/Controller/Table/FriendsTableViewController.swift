@@ -4,18 +4,12 @@
 import UIKit
 
 /// список друзей
-class FriendsTableViewController: UITableViewController {
+final class FriendsTableViewController: UITableViewController {
     // MARK: Private Property
 
     private let friends = users.filter { user in
         guard let friend = ilentiy.friendIDs?.contains(user.ID) else { return false }
         return friend
-    }
-
-    // MARK: - Life Cycle
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
     }
 
     // MARK: - Public Methods

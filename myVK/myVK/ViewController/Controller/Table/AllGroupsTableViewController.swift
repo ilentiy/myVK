@@ -11,12 +11,6 @@ final class AllGroupsTableViewController: UITableViewController {
         guard group.subscribers?.contains(ilentiy.ID) == false else { return false }
         return true
     }
-
-    // MARK: - Life Cycle
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
 }
 
 extension AllGroupsTableViewController {

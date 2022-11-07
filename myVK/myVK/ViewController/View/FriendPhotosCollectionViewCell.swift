@@ -7,11 +7,11 @@ import UIKit
 final class FriendPhotosCollectionViewCell: UICollectionViewCell {
     // MARK: - IBOutlet
 
-    @IBOutlet var photoImageVIew: UIImageView!
+    @IBOutlet var photoImageView: UIImageView!
 
     // MARK: - Public Methods
 
     func updateCell(imageName: String) {
-        photoImageVIew.image = UIImage(named: imageName)
+        photoImageView.image = UIImage(named: imageName)
     }
 }

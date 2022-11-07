@@ -11,7 +11,7 @@ import UIKit
         CAShapeLayer.self
     }
 
-    // MARK: - IBInspectable
+    // MARK: - Private properties
 
     @IBInspectable private var shadowRadius: CGFloat = 5 {
         didSet {

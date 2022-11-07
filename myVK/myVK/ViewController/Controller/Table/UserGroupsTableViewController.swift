@@ -4,18 +4,12 @@
 import UIKit
 
 /// список групп пользователя
-class UserGroupsTableViewController: UITableViewController {
+final class UserGroupsTableViewController: UITableViewController {
     // MARK: - Private Property
 
     private var myGroups = groups.filter { group in
         guard group.subscribers?.contains(ilentiy.ID) == true else { return false }
         return true
-    }
-
-    // MARK: - Life Cycle
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
     }
 
     // MARK: - IBActions
