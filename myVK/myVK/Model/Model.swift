@@ -169,4 +169,22 @@ struct News {
     let newsDateText: String
     let newsText: String
     let photoNames: String
+
+    static func getNews() -> [News] {
+        let news = [
+            News(
+                user: User.getUsers()[0],
+                newsDateText: "03.11.2022",
+                newsText: "Оцените фотку плииз",
+                photoNames: "1 1"
+            ),
+            News(
+                user: User.getUsers()[2],
+                newsDateText: "01.11.2022",
+                newsText: "Всем привет",
+                photoNames: "1 2"
+            ),
+        ]
+        return news
+    }
 }

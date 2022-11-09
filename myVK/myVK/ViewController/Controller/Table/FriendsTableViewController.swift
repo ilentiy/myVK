@@ -7,12 +7,12 @@ import UIKit
 final class FriendsTableViewController: UITableViewController {
     // MARK: Private Property
 
-    private let friends = users.filter { user in
-        guard let friend = ilentiy.friendIDs?.contains(user.ID) else { return false }
+    private let friends = User.getUsers().filter { user in
+        guard let friend = User.getIlentiy().friendIDs?.contains(user.ID) else { return false }
         return friend
     }
 
-    private var sections: [Character: [User]] = [:]
+    private var sectionsMap: [Character: [User]] = [:]
     private var sectionTitles: [Character] = []
 
     // MARK: - LifeCycle
@@ -36,13 +36,13 @@ final class FriendsTableViewController: UITableViewController {
     private func alphabetSort() {
         for friend in friends {
             guard let firstLetter = friend.name.first else { return }
-            if sections[firstLetter] != nil {
-                sections[firstLetter]?.append(friend)
+            if sectionsMap[firstLetter] != nil {
+                sectionsMap[firstLetter]?.append(friend)
             } else {
-                sections[firstLetter] = [friend]
+                sectionsMap[firstLetter] = [friend]
             }
         }
-        sectionTitles = Array(sections.keys).sorted()
+        sectionTitles = Array(sectionsMap.keys).sorted()
     }
 }
 
@@ -50,11 +50,11 @@ final class FriendsTableViewController: UITableViewController {
 
 extension FriendsTableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
-        sections.count
+        sectionsMap.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        sections[sectionTitles[section]]?.count ?? 0
+        sectionsMap[sectionTitles[section]]?.count ?? 0
     }
 
     override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
@@ -72,7 +72,7 @@ extension FriendsTableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let friend = sections[sectionTitles[indexPath.section]]?[indexPath.row],
+        guard let friend = sectionsMap[sectionTitles[indexPath.section]]?[indexPath.row],
               let cell = tableView.dequeueReusableCell(
                   withIdentifier: Constants.Identifier.TableViewCell.friend,
                   for: indexPath

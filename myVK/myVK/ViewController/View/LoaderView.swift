@@ -29,7 +29,10 @@ final class LoaderView: UIView {
             view.layer.masksToBounds = true
             pointViews.append(view)
         }
+        configureStackView()
+    }
 
+    private func configureStackView() {
         stackView = UIStackView(arrangedSubviews: pointViews)
         guard let stackView = stackView else { return }
         stackView.spacing = 10
@@ -49,7 +52,7 @@ final class LoaderView: UIView {
     }
 
     private func makeOpacity(for view: UIImageView, delay: Double) {
-        let animation = CABasicAnimation(keyPath: "opacity")
+        let animation = CABasicAnimation(keyPath: Constants.KeyPath.opacity)
         animation.fromValue = 1
         animation.toValue = 0.33
         animation.duration = 0.7

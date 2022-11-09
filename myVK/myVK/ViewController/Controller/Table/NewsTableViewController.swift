@@ -13,7 +13,7 @@ extension NewsTableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        news.count
+        News.getNews().count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -22,7 +22,7 @@ extension NewsTableViewController {
             for: indexPath
         ) as? NewsTableViewCell else { return UITableViewCell() }
 
-        cell.updateDate(news: news[indexPath.row])
+        cell.updateDate(news: News.getNews()[indexPath.row])
 
         return cell
     }

@@ -11,8 +11,8 @@ final class AllGroupsTableViewController: UITableViewController {
 
     // MARK: - Private Property
 
-    private var allGroups = groups.filter { group in
-        guard group.subscribers?.contains(ilentiy.ID) == false else { return false }
+    private var allGroups = Group.getGroups().filter { group in
+        guard group.subscribers?.contains(User.getIlentiy().ID) == false else { return false }
         return true
     }
 
@@ -36,7 +36,7 @@ final class AllGroupsTableViewController: UITableViewController {
         searchBar.frame = CGRect(x: 0, y: 0, width: 200, height: 70)
         searchBar.delegate = self
         searchBar.searchBarStyle = UISearchBar.Style.minimal
-        searchBar.placeholder = " Введите название группы"
+        searchBar.placeholder = Constants.Text.searchBarPlaceholder
         searchBar.sizeToFit()
         tableView.tableHeaderView = searchBar
         searchedGroups = allGroups

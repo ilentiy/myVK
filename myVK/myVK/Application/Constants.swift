@@ -32,4 +32,12 @@ enum Constants {
     enum ImageNameText {
         static let logo = "logoVk1"
     }
+
+    enum Text {
+        static let searchBarPlaceholder = " Введите название группы"
+    }
+
+    enum KeyPath {
+        static let opacity = "opacity"
+    }
 }
