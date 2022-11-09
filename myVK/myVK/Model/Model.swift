@@ -162,3 +162,11 @@ struct Group: Equatable {
         subscribers = subscribers?.filter { $0 != id }
     }
 }
+
+/// Новости
+struct News {
+    let user: User
+    let newsDateText: String
+    let newsText: String
+    let photoNames: String
+}

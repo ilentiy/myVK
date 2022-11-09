@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0920ECD0291301C6009E2849 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0920ECCF291301C6009E2849 /* Model.swift */; };
+		0928241D291AF246004EF4D0 /* LoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0928241C291AF246004EF4D0 /* LoaderView.swift */; };
+		092D787C291A3920008B5816 /* NewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092D787B291A3920008B5816 /* NewsTableViewController.swift */; };
+		092D787E291A6C62008B5816 /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092D787D291A6C62008B5816 /* NewsTableViewCell.swift */; };
 		09B66A5F2911BED100E7BA49 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B66A5E2911BED100E7BA49 /* LogInViewController.swift */; };
 		09B66A652911C01200E7BA49 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B66A642911C01200E7BA49 /* UITextField+Extension.swift */; };
 		09B66A672911C15D00E7BA49 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B66A662911C15D00E7BA49 /* Constants.swift */; };
@@ -31,6 +34,9 @@
 
 /* Begin PBXFileReference section */
 		0920ECCF291301C6009E2849 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		0928241C291AF246004EF4D0 /* LoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderView.swift; sourceTree = "<group>"; };
+		092D787B291A3920008B5816 /* NewsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewController.swift; sourceTree = "<group>"; };
+		092D787D291A6C62008B5816 /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
 		09B66A5E2911BED100E7BA49 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		09B66A642911C01200E7BA49 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		09B66A662911C15D00E7BA49 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -167,6 +173,7 @@
 				09E4BBE12913C1C400E78CED /* FriendsTableViewController.swift */,
 				09E4BBE32913C1E600E78CED /* UserGroupsTableViewController.swift */,
 				09E4BBE52913C1F600E78CED /* AllGroupsTableViewController.swift */,
+				092D787B291A3920008B5816 /* NewsTableViewController.swift */,
 			);
 			path = Table;
 			sourceTree = "<group>";
@@ -187,6 +194,8 @@
 				09F23F19291480D700876619 /* FriendPhotosCollectionViewCell.swift */,
 				09F1084A2914EC52000E8D76 /* ShadowView.swift */,
 				09F1084C2914ED25000E8D76 /* LikeControl.swift */,
+				092D787D291A6C62008B5816 /* NewsTableViewCell.swift */,
+				0928241C291AF246004EF4D0 /* LoaderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -313,6 +322,7 @@
 				09B66A672911C15D00E7BA49 /* Constants.swift in Sources */,
 				09B66A5F2911BED100E7BA49 /* LogInViewController.swift in Sources */,
 				09F1084F29184D19000E8D76 /* GroupTableViewCell.swift in Sources */,
+				092D787C291A3920008B5816 /* NewsTableViewController.swift in Sources */,
 				09E4BBE82913C27500E78CED /* FriendPhotoCollectionViewController.swift in Sources */,
 				09B66A652911C01200E7BA49 /* UITextField+Extension.swift in Sources */,
 				09D3D9B429106A51007DFCFC /* AppDelegate.swift in Sources */,
@@ -321,7 +331,9 @@
 				09E4BBE42913C1E600E78CED /* UserGroupsTableViewController.swift in Sources */,
 				09D3D9B629106A51007DFCFC /* SceneDelegate.swift in Sources */,
 				09F1084B2914EC52000E8D76 /* ShadowView.swift in Sources */,
+				0928241D291AF246004EF4D0 /* LoaderView.swift in Sources */,
 				09E4BBF02913FE0300E78CED /* FriendTableViewCell.swift in Sources */,
+				092D787E291A6C62008B5816 /* NewsTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

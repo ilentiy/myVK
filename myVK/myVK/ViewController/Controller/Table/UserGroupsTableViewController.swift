@@ -20,7 +20,7 @@ final class UserGroupsTableViewController: UITableViewController {
             let allGroupsController = segue.source as? AllGroupsTableViewController,
             let indexPath = allGroupsController.tableView.indexPathForSelectedRow
         else { return }
-        let currentGroup = allGroupsController.allGroups[indexPath.row]
+        let currentGroup = allGroupsController.searchedGroups[indexPath.row]
         for var group in groups where group == currentGroup {
             group.follow(id: ilentiy.ID)
         }
@@ -31,7 +31,7 @@ final class UserGroupsTableViewController: UITableViewController {
     }
 }
 
-// MARK: - Table view data source
+// MARK: - TableViewDataSource
 
 extension UserGroupsTableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
