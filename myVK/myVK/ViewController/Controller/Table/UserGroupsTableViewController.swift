@@ -7,8 +7,8 @@ import UIKit
 final class UserGroupsTableViewController: UITableViewController {
     // MARK: - Private Property
 
-    private var myGroups = groups.filter { group in
-        guard group.subscribers?.contains(ilentiy.ID) == true else { return false }
+    private var myGroups = Group.getGroups().filter { group in
+        guard group.subscribers?.contains(User.getIlentiy().ID) == true else { return false }
         return true
     }
 
@@ -20,9 +20,9 @@ final class UserGroupsTableViewController: UITableViewController {
             let allGroupsController = segue.source as? AllGroupsTableViewController,
             let indexPath = allGroupsController.tableView.indexPathForSelectedRow
         else { return }
-        let currentGroup = allGroupsController.allGroups[indexPath.row]
-        for var group in groups where group == currentGroup {
-            group.follow(id: ilentiy.ID)
+        let currentGroup = allGroupsController.searchedGroups[indexPath.row]
+        for var group in Group.getGroups() where group == currentGroup {
+            group.follow(id: User.getIlentiy().ID)
         }
         if !myGroups.contains(where: { $0.ID == currentGroup.ID }) {
             myGroups.append(currentGroup)
@@ -31,7 +31,7 @@ final class UserGroupsTableViewController: UITableViewController {
     }
 }
 
-// MARK: - Table view data source
+// MARK: - TableViewDataSource
 
 extension UserGroupsTableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -58,8 +58,8 @@ extension UserGroupsTableViewController {
     ) {
         if editingStyle == .delete {
             let currentGroup = myGroups.remove(at: indexPath.row)
-            for var group in groups where group == currentGroup {
-                group.unfollow(id: ilentiy.ID)
+            for var group in Group.getGroups() where group == currentGroup {
+                group.unfollow(id: User.getIlentiy().ID)
             }
         }
         tableView.deleteRows(at: [indexPath], with: .left)

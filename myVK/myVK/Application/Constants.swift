@@ -14,6 +14,7 @@ enum Constants {
             static let friend = "Friends"
             static let groups = "Groups"
             static let collection = "Photo"
+            static let news = "News"
         }
     }
 
@@ -26,5 +27,17 @@ enum Constants {
         static let errorTitle = "Ошибка!"
         static let errorText = "Введен неверный логин или пароль"
         static let actionText = "Повторить"
+    }
+
+    enum ImageNameText {
+        static let logo = "logoVk1"
+    }
+
+    enum Text {
+        static let searchBarPlaceholder = " Введите название группы"
+    }
+
+    enum KeyPath {
+        static let opacity = "opacity"
     }
 }

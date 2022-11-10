@@ -16,6 +16,7 @@ final class LikeControl: UIControl {
 
     @IBOutlet private var likeButton: UIButton!
     @IBOutlet private var likeNumberLabel: UILabel!
+    @IBOutlet private var likeView: UIView?
 
     // MARK: - Private properties
 
@@ -26,13 +27,48 @@ final class LikeControl: UIControl {
 
     @IBAction private func likeAction() {
         if isLiked == false {
-            likeNumberLabel.text = String(likesCount + 1)
             likeButton.setImage(UIImage(systemName: Constants.heartFill), for: .normal)
+            likeAnimate()
             isLiked = true
         } else {
             likeNumberLabel.text = String(likesCount + 0)
+            likeNumberLabel.textColor = .systemGray
             likeButton.setImage(UIImage(systemName: Constants.heart), for: .normal)
+            likeButton.tintColor = .systemGray
+            likeView?.backgroundColor = .systemGray.withAlphaComponent(0.75)
             isLiked = false
+        }
+    }
+
+    private func likeAnimate() {
+        guard let bounds = likeButton.imageView?.bounds else { return }
+        UIView.animate(withDuration: 1.0) {
+            self.likeButton.tintColor = .systemRed
+            self.likeView?.backgroundColor = .systemRed.withAlphaComponent(0.5)
+        }
+
+        UIView.animate(
+            withDuration: 1.0,
+            delay: 0,
+            usingSpringWithDamping: 0.2,
+            initialSpringVelocity: 5,
+            options: .curveEaseInOut
+        ) {
+            self.likeButton.bounds = CGRect(
+                x: bounds.origin.x,
+                y: bounds.origin.y * 0.95,
+                width: bounds.width,
+                height: bounds.height / 0.95
+            )
+        }
+
+        UIView.transition(
+            with: likeNumberLabel,
+            duration: 0.5,
+            options: .transitionFlipFromBottom
+        ) {
+            self.likeNumberLabel.text = String(self.likesCount + 1)
+            self.likeNumberLabel.textColor = .systemRed
         }
     }
 }

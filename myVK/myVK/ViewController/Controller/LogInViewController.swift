@@ -5,11 +5,13 @@ import UIKit
 
 /// Экран Авторизации
 final class LogInViewController: UIViewController {
-    // MARK: IBOutlets
+    // MARK: - Private IBOutlets
 
     @IBOutlet private var scrollView: UIScrollView!
     @IBOutlet private var loginTextField: UITextField!
     @IBOutlet private var passwordTextField: UITextField!
+    @IBOutlet private var loginButton: UIButton!
+    @IBOutlet private var loaderView: LoaderView!
 
     // MARK: - Life Cycle
 
@@ -47,6 +49,7 @@ final class LogInViewController: UIViewController {
         installNotificationCenter()
         loginTextField.setLeftPaddingPoints(10)
         passwordTextField.setLeftPaddingPoints(10)
+        loaderView.setupUI()
     }
 
     private func checkLogin() -> Bool {
@@ -60,7 +63,7 @@ final class LogInViewController: UIViewController {
     }
 }
 
-/// Расширение для работы с клавиатурой
+/// Keyboard Notification Center
 extension LogInViewController {
     // MARK: - Private methods
 
