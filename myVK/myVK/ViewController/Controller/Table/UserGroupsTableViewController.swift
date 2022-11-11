@@ -3,9 +3,9 @@
 
 import UIKit
 
-/// список групп пользователя
+/// Экран  групп пользователя
 final class UserGroupsTableViewController: UITableViewController {
-    // MARK: - Private Property
+    // MARK: - Private Properties
 
     private var myGroups = Group.getGroups().filter { group in
         guard group.subscribers?.contains(User.getIlentiy().ID) == true else { return false }
@@ -47,7 +47,7 @@ extension UserGroupsTableViewController {
             withIdentifier: Constants.Identifier.TableViewCell.groups,
             for: indexPath
         ) as? GroupTableViewCell else { return UITableViewCell() }
-        cell.updateDate(group: myGroups[indexPath.row])
+        cell.configure(group: myGroups[indexPath.row])
         return cell
     }
 

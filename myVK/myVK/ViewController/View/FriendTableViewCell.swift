@@ -11,9 +11,9 @@ final class FriendTableViewCell: UITableViewCell {
     @IBOutlet private var nameLabel: UILabel!
     @IBOutlet private var shadowView: ShadowView!
 
-    // MARK: - Public Property
+    // MARK: - Public Properties
 
-    var user: User?
+    private(set) var user: User?
 
     // MARK: - Public Methods
 
@@ -22,8 +22,9 @@ final class FriendTableViewCell: UITableViewCell {
         shadowView.configureShadow()
     }
 
-    func updateDate(user: User) {
+    func configure(user: User) {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(avatarAnimateAction))
+        self.user = user
         avatarImageView.isUserInteractionEnabled = true
         avatarImageView.addGestureRecognizer(gesture)
         nameLabel.text = user.name

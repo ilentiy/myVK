@@ -15,7 +15,7 @@ final class NewsTableViewCell: UITableViewCell {
 
     // MARK: - Public Methods
 
-    func updateDate(news: News) {
+    func configure(news: News) {
         nameLabel.text = news.user.name
         avatarImageView.image = UIImage(named: news.user.avatarImageName)
         newsDataLabel.text = news.newsDateText

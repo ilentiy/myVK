@@ -3,13 +3,13 @@
 
 import UIKit
 
-/// Список всех групп
+/// Экран всех групп
 final class AllGroupsTableViewController: UITableViewController {
     // MARK: - Private Visual Components
 
     private let searchBar = UISearchBar()
 
-    // MARK: - Private Property
+    // MARK: - Private Properties
 
     private var allGroups = Group.getGroups().filter { group in
         guard group.subscribers?.contains(User.getIlentiy().ID) == false else { return false }
@@ -59,7 +59,7 @@ extension AllGroupsTableViewController {
             withIdentifier: Constants.Identifier.TableViewCell.groups,
             for: indexPath
         ) as? GroupTableViewCell else { return UITableViewCell() }
-        cell.updateDate(group: searchedGroups[indexPath.row])
+        cell.configure(group: searchedGroups[indexPath.row])
         return cell
     }
 }

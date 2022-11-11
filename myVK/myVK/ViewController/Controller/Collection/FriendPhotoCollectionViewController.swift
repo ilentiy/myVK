@@ -3,17 +3,29 @@
 
 import UIKit
 
-/// экран с фотографиями друга
+/// Экран профиля друга
 final class FriendPhotoCollectionViewController: UICollectionViewController {
-    // MARK: - Public Property
+    // MARK: - Public Properties
 
     var user: User?
 
-    // MARK: - Life Cycle
+    // MARK: - LifeCycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+    }
+
+    // MARK: - Public Methods
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        guard segue.identifier == Constants.Identifier.Segue.photoSegue,
+              let cell = sender as? FriendPhotosCollectionViewCell,
+              let destination = segue.destination as? FriendPhotosViewController
+        else { return }
+        destination.photoNames = cell.photoNames ?? []
+        destination.currentPhotoIndex = cell.currentPhotoIndex ?? 0
     }
 
     // MARK: - Private Methods
@@ -23,7 +35,7 @@ final class FriendPhotoCollectionViewController: UICollectionViewController {
     }
 }
 
-// MARK: UICollectionViewDataSource
+// MARK: - UICollectionViewDataSource
 
 extension FriendPhotoCollectionViewController {
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -46,7 +58,7 @@ extension FriendPhotoCollectionViewController {
                 for: indexPath
             ) as? FriendPhotosCollectionViewCell
         else { return UICollectionViewCell() }
-        cell.updateCell(imageName: userPhotoNames[indexPath.row])
+        cell.configure(photoNameIndex: indexPath.row, photoNames: userPhotoNames)
         return cell
     }
 }

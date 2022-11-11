@@ -22,7 +22,7 @@ extension NewsTableViewController {
             for: indexPath
         ) as? NewsTableViewCell else { return UITableViewCell() }
 
-        cell.updateDate(news: News.getNews()[indexPath.row])
+        cell.configure(news: News.getNews()[indexPath.row])
 
         return cell
     }

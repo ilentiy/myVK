@@ -10,14 +10,15 @@ final class GroupTableViewCell: UITableViewCell {
     @IBOutlet private var avatarImageView: UIImageView!
     @IBOutlet private var nameLabel: UILabel!
 
-    // MARK: - Public Property
+    // MARK: - Public Properties
 
     var group: Group?
 
     // MARK: - Public Methods
 
-    func updateDate(group: Group) {
+    func configure(group: Group) {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(avatarAnimateAction))
+        self.group = group
         avatarImageView.isUserInteractionEnabled = true
         avatarImageView.addGestureRecognizer(gesture)
         nameLabel.text = group.name
