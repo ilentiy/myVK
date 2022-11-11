@@ -3,7 +3,7 @@
 
 import UIKit
 
-/// список друзей
+/// Экран списка друзей
 final class FriendsTableViewController: UITableViewController {
     // MARK: Private Properties
 
@@ -78,8 +78,7 @@ extension FriendsTableViewController {
                   withIdentifier: Constants.Identifier.TableViewCell.friend,
                   for: indexPath
               ) as? FriendTableViewCell else { return UITableViewCell() }
-        cell.user = friend
-        cell.updateDate(user: friend)
+        cell.configure(user: friend)
         return cell
     }
 }

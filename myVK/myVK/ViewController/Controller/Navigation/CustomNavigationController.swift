@@ -3,8 +3,6 @@
 
 import UIKit
 
-/// Навигация с кастомными переходами
-
 /// Конфигурация кастомного навигейшн контроллера
 final class CustomNavigationController: UINavigationController {
     // MARK: - Private Properties

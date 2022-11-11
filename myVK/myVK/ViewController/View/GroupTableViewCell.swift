@@ -16,8 +16,9 @@ final class GroupTableViewCell: UITableViewCell {
 
     // MARK: - Public Methods
 
-    func updateDate(group: Group) {
+    func configure(group: Group) {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(avatarAnimateAction))
+        self.group = group
         avatarImageView.isUserInteractionEnabled = true
         avatarImageView.addGestureRecognizer(gesture)
         nameLabel.text = group.name

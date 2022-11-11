@@ -8,7 +8,7 @@ final class LoaderView: UIView {
     // MARK: - Private Visual Components
 
     private var stackView: UIStackView?
-    private lazy var pointViews: [UIImageView] = []
+    private lazy var pointImageViews: [UIImageView] = []
 
     // MARK: - PUblic Methods
 
@@ -26,13 +26,13 @@ final class LoaderView: UIView {
             view.heightAnchor.constraint(equalToConstant: bounds.height - 5).isActive = true
             view.layer.cornerRadius = (bounds.height - 5) / 2
             view.layer.masksToBounds = true
-            pointViews.append(view)
+            pointImageViews.append(view)
         }
         configureStackView()
     }
 
     private func configureStackView() {
-        stackView = UIStackView(arrangedSubviews: pointViews)
+        stackView = UIStackView(arrangedSubviews: pointImageViews)
         guard let stackView = stackView else { return }
         stackView.spacing = 10
         stackView.axis = .horizontal
@@ -44,7 +44,7 @@ final class LoaderView: UIView {
 
     private func animatePoints() {
         var delay = 0.0
-        pointViews.forEach { point in
+        pointImageViews.forEach { point in
             delay += 0.3
             self.makeOpacity(for: point, delay: delay)
         }

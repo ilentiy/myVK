@@ -3,7 +3,7 @@
 
 import UIKit
 
-/// Список всех групп
+/// Экран всех групп
 final class AllGroupsTableViewController: UITableViewController {
     // MARK: - Private Visual Components
 
@@ -59,7 +59,7 @@ extension AllGroupsTableViewController {
             withIdentifier: Constants.Identifier.TableViewCell.groups,
             for: indexPath
         ) as? GroupTableViewCell else { return UITableViewCell() }
-        cell.updateDate(group: searchedGroups[indexPath.row])
+        cell.configure(group: searchedGroups[indexPath.row])
         return cell
     }
 }

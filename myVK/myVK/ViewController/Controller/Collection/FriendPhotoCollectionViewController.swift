@@ -3,7 +3,7 @@
 
 import UIKit
 
-/// экран с фотографиями друга
+/// Экран профиля друга
 final class FriendPhotoCollectionViewController: UICollectionViewController {
     // MARK: - Public Properties
 
@@ -58,9 +58,7 @@ extension FriendPhotoCollectionViewController {
                 for: indexPath
             ) as? FriendPhotosCollectionViewCell
         else { return UICollectionViewCell() }
-        cell.updateCell(imageName: userPhotoNames[indexPath.row])
-        cell.photoNames = userPhotoNames
-        cell.currentPhotoIndex = indexPath.row
+        cell.configure(photoNameIndex: indexPath.row, photoNames: userPhotoNames)
         return cell
     }
 }

@@ -2,6 +2,7 @@
 // Copyright © RoadMap. All rights reserved.
 
 import UIKit
+
 /// Экран с перелистыванием фото
 final class FriendPhotosViewController: UIViewController {
     // MARK: - Private Visual Components
@@ -37,19 +38,11 @@ final class FriendPhotosViewController: UIViewController {
     // MARK: - Private Methods
 
     private func changeColorBars(_ isBlack: Bool) {
-        if isBlack {
-            tabBarController?.tabBar.isHidden = true
-            navigationController?.navigationBar.backgroundColor = .black
-            navigationController?.navigationBar.tintColor = .white
-            navigationController?.navigationBar
-                .titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        } else {
-            tabBarController?.tabBar.isHidden = false
-            navigationController?.navigationBar.backgroundColor = .white
-            navigationController?.navigationBar.tintColor = .black
-            navigationController?.navigationBar
-                .titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
-        }
+        tabBarController?.tabBar.isHidden = isBlack
+        navigationController?.navigationBar.backgroundColor = isBlack ? .black : .white
+        navigationController?.navigationBar.tintColor = isBlack ? .white : .black
+        navigationController?.navigationBar
+            .titleTextAttributes = [NSAttributedString.Key.foregroundColor: isBlack ? UIColor.white : UIColor.black]
     }
 
     private func configureTitle() {
@@ -58,8 +51,6 @@ final class FriendPhotosViewController: UIViewController {
         view.addGestureRecognizer(panGecognizer)
         photoImageView.image = UIImage(named: photoNames[currentPhotoIndex])
     }
-
-    private func createGesture() {}
 
     @objc func onPanAction(_ recognizer: UIPanGestureRecognizer) {
         switch recognizer.state {
@@ -76,7 +67,6 @@ final class FriendPhotosViewController: UIViewController {
         case .changed:
             let translation = recognizer.translation(in: view)
             interactiveAnimator.pauseAnimation()
-
             interactiveAnimator.fractionComplete = abs(translation.x / 100)
             photoImageView.transform = CGAffineTransform(translationX: translation.x, y: 0)
                 .concatenating(CGAffineTransform(
