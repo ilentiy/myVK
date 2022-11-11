@@ -21,22 +21,22 @@ final class FriendPhotosViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configure()
+        configureTitle()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        configureBars(true)
+        changeColorBars(true)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        configureBars(false)
+        changeColorBars(false)
     }
 
     // MARK: - Private Methods
 
-    private func configureBars(_ isBlack: Bool) {
+    private func changeColorBars(_ isBlack: Bool) {
         if isBlack {
             tabBarController?.tabBar.isHidden = true
             navigationController?.navigationBar.backgroundColor = .black
@@ -52,16 +52,16 @@ final class FriendPhotosViewController: UIViewController {
         }
     }
 
-    private func configure() {
+    private func configureTitle() {
         title = "\(currentPhotoIndex + 1) из \(photoNames.count)"
-        let panGecognizer = UIPanGestureRecognizer(target: self, action: #selector(onPan))
+        let panGecognizer = UIPanGestureRecognizer(target: self, action: #selector(onPanAction))
         view.addGestureRecognizer(panGecognizer)
         photoImageView.image = UIImage(named: photoNames[currentPhotoIndex])
     }
 
     private func createGesture() {}
 
-    @objc func onPan(_ recognizer: UIPanGestureRecognizer) {
+    @objc func onPanAction(_ recognizer: UIPanGestureRecognizer) {
         switch recognizer.state {
         case .began:
             interactiveAnimator?.startAnimation()

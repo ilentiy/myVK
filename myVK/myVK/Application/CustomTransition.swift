@@ -2,8 +2,9 @@
 // Copyright © RoadMap. All rights reserved.
 
 import UIKit
-/// Кастомные анимации для перехода между контроллерами
-/// Переход вперед
+
+/// Кастомные анимации для перехода между контроллерами.
+
 final class PushTransition: NSObject, UIViewControllerAnimatedTransitioning {
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         1
@@ -51,7 +52,6 @@ final class PushTransition: NSObject, UIViewControllerAnimatedTransitioning {
     }
 }
 
-/// Переход назад
 final class PopTransition: NSObject, UIViewControllerAnimatedTransitioning {
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         1
@@ -108,8 +108,8 @@ final class InteractiveTransition: UIPercentDrivenInteractiveTransition {
 
     // MARK: - PUblic Properties
 
-    var isStarted: Bool = false
-    var isFinish: Bool = false
+    var isStarted = false
+    var isFinish = false
 
     // MARK: Private Methods
 
