@@ -6,6 +6,7 @@ enum Constants {
     enum Identifier {
         enum Segue {
             static let loginSegue = "login"
+            static let pageSegue = "PageSegue"
             static let photoSegue = "PhotoSegue"
             static let unwind = "Unwind"
         }

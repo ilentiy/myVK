@@ -5,7 +5,7 @@ import UIKit
 
 /// список групп пользователя
 final class UserGroupsTableViewController: UITableViewController {
-    // MARK: - Private Property
+    // MARK: - Private Properties
 
     private var myGroups = Group.getGroups().filter { group in
         guard group.subscribers?.contains(User.getIlentiy().ID) == true else { return false }

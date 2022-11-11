@@ -8,7 +8,6 @@ final class LoaderView: UIView {
     // MARK: - Private Visual Components
 
     private var stackView: UIStackView?
-
     private lazy var pointViews: [UIImageView] = []
 
     // MARK: - PUblic Methods

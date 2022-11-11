@@ -5,7 +5,7 @@ import UIKit
 
 /// список друзей
 final class FriendsTableViewController: UITableViewController {
-    // MARK: Private Property
+    // MARK: Private Properties
 
     private let friends = User.getUsers().filter { user in
         guard let friend = User.getIlentiy().friendIDs?.contains(user.ID) else { return false }
@@ -14,6 +14,7 @@ final class FriendsTableViewController: UITableViewController {
 
     private var sectionsMap: [Character: [User]] = [:]
     private var sectionTitles: [Character] = []
+    private let interactiveTransition = InteractiveTransition()
 
     // MARK: - LifeCycle
 
@@ -26,7 +27,7 @@ final class FriendsTableViewController: UITableViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
-        if segue.identifier == Constants.Identifier.Segue.photoSegue,
+        if segue.identifier == Constants.Identifier.Segue.pageSegue,
            let cell = sender as? FriendTableViewCell,
            let destination = segue.destination as? FriendPhotoCollectionViewController { destination.user = cell.user }
     }

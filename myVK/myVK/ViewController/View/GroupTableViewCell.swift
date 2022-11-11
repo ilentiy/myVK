@@ -10,7 +10,7 @@ final class GroupTableViewCell: UITableViewCell {
     @IBOutlet private var avatarImageView: UIImageView!
     @IBOutlet private var nameLabel: UILabel!
 
-    // MARK: - Public Property
+    // MARK: - Public Properties
 
     var group: Group?
 

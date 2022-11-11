@@ -9,6 +9,11 @@ final class FriendPhotosCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet private var photoImageView: UIImageView!
 
+    // MARK: - Public Properties
+
+    var photoNames: [String]?
+    var currentPhotoIndex: Int?
+
     // MARK: - Public Methods
 
     func updateCell(imageName: String) {

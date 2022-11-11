@@ -9,7 +9,7 @@ final class AllGroupsTableViewController: UITableViewController {
 
     private let searchBar = UISearchBar()
 
-    // MARK: - Private Property
+    // MARK: - Private Properties
 
     private var allGroups = Group.getGroups().filter { group in
         guard group.subscribers?.contains(User.getIlentiy().ID) == false else { return false }

@@ -13,7 +13,7 @@ final class LogInViewController: UIViewController {
     @IBOutlet private var loginButton: UIButton!
     @IBOutlet private var loaderView: LoaderView!
 
-    // MARK: - Life Cycle
+    // MARK: - LifeCycle
 
     override func viewDidLoad() {
         super.viewDidLoad()

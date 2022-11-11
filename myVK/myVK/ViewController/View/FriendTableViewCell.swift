@@ -11,7 +11,7 @@ final class FriendTableViewCell: UITableViewCell {
     @IBOutlet private var nameLabel: UILabel!
     @IBOutlet private var shadowView: ShadowView!
 
-    // MARK: - Public Property
+    // MARK: - Public Properties
 
     var user: User?
 
