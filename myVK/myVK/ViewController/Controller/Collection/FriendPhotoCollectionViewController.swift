@@ -9,11 +9,16 @@ final class FriendPhotoCollectionViewController: UICollectionViewController {
 
     var user: User?
 
+    // MARK: - Private Methods
+    
+    private lazy var service = VKAPIService()
+
     // MARK: - LifeCycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        service.getPhotos()
     }
 
     // MARK: - Public Methods

@@ -12,14 +12,16 @@ final class FriendsTableViewController: UITableViewController {
         return friend
     }
 
+    private let interactiveTransition = InteractiveTransition()
     private var sectionsMap: [Character: [User]] = [:]
     private var sectionTitles: [Character] = []
-    private let interactiveTransition = InteractiveTransition()
+    private lazy var service = VKAPIService()
 
     // MARK: - LifeCycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        service.getFriends()
         alphabetSort()
     }
 

@@ -18,6 +18,8 @@ final class AllGroupsTableViewController: UITableViewController {
 
     private(set) var searchedGroups: [Group] = []
 
+    private lazy var service = VKAPIService()
+
     // MARK: - LifeCycle
 
     override func viewDidLoad() {
@@ -70,5 +72,6 @@ extension AllGroupsTableViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchedGroups = searchText.isEmpty ? allGroups : allGroups.filter { $0.name.contains(searchText) }
         tableView.reloadData()
+        service.getSearchGroup(q: searchText)
     }
 }

@@ -12,6 +12,14 @@ final class UserGroupsTableViewController: UITableViewController {
         return true
     }
 
+    private lazy var service = VKAPIService()
+
+    // MARK: - LifeCycle
+
+    override func viewDidLoad() {
+        service.getGroups()
+    }
+
     // MARK: - IBActions
 
     @IBAction private func addGroupAction(segue: UIStoryboardSegue) {
