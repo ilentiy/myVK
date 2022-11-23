@@ -11,7 +11,7 @@ final class FriendPhotoCollectionViewController: UICollectionViewController {
 
     // MARK: - Private Methods
 
-    private var networkService = VKAPIService()
+    private let networkService = NetworkService()
 
     // MARK: - LifeCycle
 
@@ -36,7 +36,7 @@ final class FriendPhotoCollectionViewController: UICollectionViewController {
 
     private func configureUI() {
         title = user?.name
-        networkService.fetchPhotos()
+        networkFetchPhotos()
     }
 }
 
@@ -65,5 +65,15 @@ extension FriendPhotoCollectionViewController {
         else { return UICollectionViewCell() }
         cell.configure(photoNameIndex: indexPath.row, photoNames: userPhotoNames)
         return cell
+    }
+}
+
+// MARK: - Network Secrvice Method
+
+extension FriendPhotoCollectionViewController {
+    // MARK: - Private Methods
+
+    private func networkFetchPhotos() {
+        networkService.fetchPhotos()
     }
 }

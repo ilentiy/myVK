@@ -11,7 +11,7 @@
 		0928241D291AF246004EF4D0 /* LoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0928241C291AF246004EF4D0 /* LoaderView.swift */; };
 		092D787C291A3920008B5816 /* NewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092D787B291A3920008B5816 /* NewsTableViewController.swift */; };
 		092D787E291A6C62008B5816 /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092D787D291A6C62008B5816 /* NewsTableViewCell.swift */; };
-		096130A1292D5D88006AF1AC /* VKAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096130A0292D5D88006AF1AC /* VKAPIService.swift */; };
+		096130A1292D5D88006AF1AC /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096130A0292D5D88006AF1AC /* NetworkService.swift */; };
 		096130A6292D649F006AF1AC /* VKWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096130A5292D649F006AF1AC /* VKWebViewController.swift */; };
 		096130A8292D664D006AF1AC /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 096130A7292D664D006AF1AC /* WebKit.framework */; };
 		09A62C7E292D01C400E53700 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A62C7D292D01C400E53700 /* Session.swift */; };
@@ -44,7 +44,7 @@
 		0928241C291AF246004EF4D0 /* LoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderView.swift; sourceTree = "<group>"; };
 		092D787B291A3920008B5816 /* NewsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewController.swift; sourceTree = "<group>"; };
 		092D787D291A6C62008B5816 /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
-		096130A0292D5D88006AF1AC /* VKAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKAPIService.swift; sourceTree = "<group>"; };
+		096130A0292D5D88006AF1AC /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		096130A5292D649F006AF1AC /* VKWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKWebViewController.swift; sourceTree = "<group>"; };
 		096130A7292D664D006AF1AC /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		09A62C7D292D01C400E53700 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
@@ -102,7 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				09A62C7D292D01C400E53700 /* Session.swift */,
-				096130A0292D5D88006AF1AC /* VKAPIService.swift */,
+				096130A0292D5D88006AF1AC /* NetworkService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -444,7 +444,7 @@
 				09F1084B2914EC52000E8D76 /* ShadowView.swift in Sources */,
 				09A62C7E292D01C400E53700 /* Session.swift in Sources */,
 				0928241D291AF246004EF4D0 /* LoaderView.swift in Sources */,
-				096130A1292D5D88006AF1AC /* VKAPIService.swift in Sources */,
+				096130A1292D5D88006AF1AC /* NetworkService.swift in Sources */,
 				09E4BBF02913FE0300E78CED /* FriendTableViewCell.swift in Sources */,
 				092D787E291A6C62008B5816 /* NewsTableViewCell.swift in Sources */,
 			);

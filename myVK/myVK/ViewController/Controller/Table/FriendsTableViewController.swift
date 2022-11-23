@@ -13,15 +13,16 @@ final class FriendsTableViewController: UITableViewController {
     }
 
     private let interactiveTransition = InteractiveTransition()
+    private let networkService = NetworkService()
     private var sectionsMap: [Character: [User]] = [:]
     private var sectionTitles: [Character] = []
-    private var networkService = VKAPIService()
 
     // MARK: - LifeCycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         alphabetSort()
+        networkFetchFriends()
     }
 
     // MARK: - Public Methods
@@ -45,7 +46,6 @@ final class FriendsTableViewController: UITableViewController {
             }
         }
         sectionTitles = Array(sectionsMap.keys).sorted()
-        networkService.fetchFriends()
     }
 }
 
@@ -82,5 +82,15 @@ extension FriendsTableViewController {
               ) as? FriendTableViewCell else { return UITableViewCell() }
         cell.configure(user: friend)
         return cell
+    }
+}
+
+// MARK: - Network Secrvice Method
+
+extension FriendsTableViewController {
+    // MARK: - Private Methods
+
+    private func networkFetchFriends() {
+        networkService.fetchFriends()
     }
 }

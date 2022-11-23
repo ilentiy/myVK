@@ -12,12 +12,13 @@ final class UserGroupsTableViewController: UITableViewController {
         return true
     }
 
-    private var networkService = VKAPIService()
+    private let networkService = NetworkService()
 
     // MARK: - LifeCycle
 
     override func viewDidLoad() {
-        networkService.fetchUserGroups()
+        super.viewDidLoad()
+        networkFetchUserGroup()
     }
 
     // MARK: - IBActions
@@ -71,5 +72,15 @@ extension UserGroupsTableViewController {
             }
         }
         tableView.deleteRows(at: [indexPath], with: .left)
+    }
+}
+
+// MARK: - Network Secrvice Method
+
+extension UserGroupsTableViewController {
+    // MARK: - Private Methods
+
+    private func networkFetchUserGroup() {
+        networkService.fetchUserGroups()
     }
 }

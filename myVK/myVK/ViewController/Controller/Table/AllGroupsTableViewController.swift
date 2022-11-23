@@ -11,14 +11,14 @@ final class AllGroupsTableViewController: UITableViewController {
 
     // MARK: - Private Properties
 
+    private let networkService = NetworkService()
+
     private var allGroups = Group.getGroups().filter { group in
         guard group.subscribers?.contains(User.getIlentiy().ID) == false else { return false }
         return true
     }
 
     private(set) var searchedGroups: [Group] = []
-
-    private var networkService = VKAPIService()
 
     // MARK: - LifeCycle
 
@@ -72,6 +72,16 @@ extension AllGroupsTableViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchedGroups = searchText.isEmpty ? allGroups : allGroups.filter { $0.name.contains(searchText) }
         tableView.reloadData()
+        networkFetchGroup(searchText: searchText)
+    }
+}
+
+// MARK: - Network Secrvice Method
+
+extension AllGroupsTableViewController {
+    // MARK: - Private Methods
+
+    private func networkFetchGroup(searchText: String) {
         networkService.fetchGroup(q: searchText)
     }
 }

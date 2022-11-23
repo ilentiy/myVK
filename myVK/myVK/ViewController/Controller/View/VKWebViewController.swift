@@ -2,7 +2,6 @@
 // Copyright © RoadMap. All rights reserved.
 
 import UIKit
-
 import WebKit
 
 /// Авторизация ВК
@@ -14,6 +13,11 @@ final class VKWebViewController: UIViewController {
             static let scheme = "https"
             static let host = "oauth.vk.com"
             static let authorizePath = "/authorize"
+            static let blankPath = "/blank.html"
+            static let ampersant = "&"
+            static let equals = "="
+            static let accessTokenName = "access_token"
+            static let userIdName = "user_id"
             static let queryItems = [
                 URLQueryItem(
                     name: "client_id",
@@ -40,11 +44,6 @@ final class VKWebViewController: UIViewController {
                     value: "5.68"
                 )
             ]
-            static let blankPath = "/blank.html"
-            static let ampersant = "&"
-            static let equals = "="
-            static let accessTokenName = "access_token"
-            static let userIdName = "user_id"
         }
 
         static let uIStoryboardName = "Main"
@@ -53,7 +52,7 @@ final class VKWebViewController: UIViewController {
 
     // MARK: - Private IBOutlets
 
-    @IBOutlet  private var webView: WKWebView! {
+    @IBOutlet private var webView: WKWebView! {
         didSet {
             webView.navigationDelegate = self
         }
