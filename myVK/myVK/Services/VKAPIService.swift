@@ -2,6 +2,7 @@
 // Copyright © RoadMap. All rights reserved.
 
 import Alamofire
+
 import Foundation
 
 ///  Сетевой слой
@@ -15,6 +16,7 @@ final class VKAPIService {
             static let path = "friends.get?"
             static let parametrs: Parameters = [
                 "user_ids": Session.shared.userID,
+                "fields": "nickname",
                 "access_token": Session.shared.token,
                 "v": "5.131"
             ]

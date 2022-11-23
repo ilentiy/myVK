@@ -21,7 +21,6 @@ final class FriendsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        service.getFriends()
         alphabetSort()
     }
 
@@ -46,6 +45,7 @@ final class FriendsTableViewController: UITableViewController {
             }
         }
         sectionTitles = Array(sectionsMap.keys).sorted()
+        service.getFriends()
     }
 }
 
