@@ -15,7 +15,7 @@ final class FriendsTableViewController: UITableViewController {
     private let interactiveTransition = InteractiveTransition()
     private var sectionsMap: [Character: [User]] = [:]
     private var sectionTitles: [Character] = []
-    private lazy var service = VKAPIService()
+    private var networkService = VKAPIService()
 
     // MARK: - LifeCycle
 
@@ -45,7 +45,7 @@ final class FriendsTableViewController: UITableViewController {
             }
         }
         sectionTitles = Array(sectionsMap.keys).sorted()
-        service.getFriends()
+        networkService.fetchFriends()
     }
 }
 

@@ -11,7 +11,7 @@ final class FriendPhotoCollectionViewController: UICollectionViewController {
 
     // MARK: - Private Methods
 
-    private lazy var service = VKAPIService()
+    private var networkService = VKAPIService()
 
     // MARK: - LifeCycle
 
@@ -36,7 +36,7 @@ final class FriendPhotoCollectionViewController: UICollectionViewController {
 
     private func configureUI() {
         title = user?.name
-        service.getPhotos()
+        networkService.fetchPhotos()
     }
 }
 

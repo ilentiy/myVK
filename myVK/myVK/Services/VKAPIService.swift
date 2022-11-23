@@ -53,7 +53,7 @@ final class VKAPIService {
 
     // MARK: - Public Method
 
-    func getFriends() {
+    func fetchFriends() {
         let path = Constants.GetFriends.path
         let parametrs = Constants.GetFriends.parametrs
         let urlPath = Constants.baseURL + path
@@ -62,7 +62,7 @@ final class VKAPIService {
         }
     }
 
-    func getPhotos() {
+    func fetchPhotos() {
         let path = Constants.GetPhotos.path
         let parametrs = Constants.GetPhotos.parametrs
         let urlPath = Constants.baseURL + path
@@ -71,7 +71,7 @@ final class VKAPIService {
         }
     }
 
-    func getGroups() {
+    func fetchUserGroups() {
         let path = Constants.GetGroups.path
         let parametrs = Constants.GetGroups.parametrs
         let urlPath = Constants.baseURL + path
@@ -80,7 +80,7 @@ final class VKAPIService {
         }
     }
 
-    func getSearchGroup(q searchText: String) {
+    func fetchGroup(q searchText: String) {
         let path = Constants.GetSearchGroups.path
         var parametrs = Constants.GetSearchGroups.parametrs
         parametrs["q"] = searchText

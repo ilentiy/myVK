@@ -12,12 +12,12 @@ final class UserGroupsTableViewController: UITableViewController {
         return true
     }
 
-    private lazy var service = VKAPIService()
+    private var networkService = VKAPIService()
 
     // MARK: - LifeCycle
 
     override func viewDidLoad() {
-        service.getGroups()
+        networkService.fetchUserGroups()
     }
 
     // MARK: - IBActions
