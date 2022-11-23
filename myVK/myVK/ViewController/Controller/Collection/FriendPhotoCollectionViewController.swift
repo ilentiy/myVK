@@ -9,6 +9,10 @@ final class FriendPhotoCollectionViewController: UICollectionViewController {
 
     var user: User?
 
+    // MARK: - Private Methods
+
+    private let networkService = NetworkService()
+
     // MARK: - LifeCycle
 
     override func viewDidLoad() {
@@ -32,6 +36,7 @@ final class FriendPhotoCollectionViewController: UICollectionViewController {
 
     private func configureUI() {
         title = user?.name
+        networkFetchPhotos()
     }
 }
 
@@ -60,5 +65,15 @@ extension FriendPhotoCollectionViewController {
         else { return UICollectionViewCell() }
         cell.configure(photoNameIndex: indexPath.row, photoNames: userPhotoNames)
         return cell
+    }
+}
+
+// MARK: - Network Secrvice Method
+
+extension FriendPhotoCollectionViewController {
+    // MARK: - Private Methods
+
+    private func networkFetchPhotos() {
+        networkService.fetchPhotos()
     }
 }

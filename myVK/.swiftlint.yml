@@ -19,7 +19,7 @@ opt_in_rules:
   - unneeded_parentheses_in_closure_argument
   
 excluded:
-  - Pods
+- Pods
 
 warning_threshold: 1
 

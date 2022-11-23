@@ -12,6 +12,15 @@ final class UserGroupsTableViewController: UITableViewController {
         return true
     }
 
+    private let networkService = NetworkService()
+
+    // MARK: - LifeCycle
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        networkFetchUserGroup()
+    }
+
     // MARK: - IBActions
 
     @IBAction private func addGroupAction(segue: UIStoryboardSegue) {
@@ -63,5 +72,15 @@ extension UserGroupsTableViewController {
             }
         }
         tableView.deleteRows(at: [indexPath], with: .left)
+    }
+}
+
+// MARK: - Network Secrvice Method
+
+extension UserGroupsTableViewController {
+    // MARK: - Private Methods
+
+    private func networkFetchUserGroup() {
+        networkService.fetchUserGroups()
     }
 }
