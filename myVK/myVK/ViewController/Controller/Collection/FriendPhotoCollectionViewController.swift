@@ -8,6 +8,13 @@ final class FriendPhotoCollectionViewController: UICollectionViewController {
     // MARK: - Public Properties
 
     var user: User?
+    var photos: [Photo] = []
+    lazy var fullName: String = {
+        guard let firstName = user?.firstName,
+              let lastName = user?.lastName
+        else { return "" }
+        return "\(firstName)  \(lastName)"
+    }()
 
     // MARK: - Private Methods
 
@@ -28,15 +35,15 @@ final class FriendPhotoCollectionViewController: UICollectionViewController {
               let cell = sender as? FriendPhotosCollectionViewCell,
               let destination = segue.destination as? FriendPhotosViewController
         else { return }
-        destination.photoNames = cell.photoNames ?? []
-        destination.currentPhotoIndex = cell.currentPhotoIndex ?? 0
+        destination.photos = photos
+        destination.currentPhotoIndex = cell.currentPhotoIndex
     }
 
     // MARK: - Private Methods
 
     private func configureUI() {
-        title = user?.name
-        networkFetchPhotos()
+        title = fullName
+        networkFetchPhotos(ownerID: user?.id ?? 0)
     }
 }
 
@@ -48,8 +55,7 @@ extension FriendPhotoCollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let itemsCount = user?.photoNames?.count else { return 0 }
-        return itemsCount
+        photos.count
     }
 
     override func collectionView(
@@ -57,13 +63,12 @@ extension FriendPhotoCollectionViewController {
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
         guard
-            let userPhotoNames = user?.photoNames,
             let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: Constants.Identifier.TableViewCell.collection,
                 for: indexPath
             ) as? FriendPhotosCollectionViewCell
         else { return UICollectionViewCell() }
-        cell.configure(photoNameIndex: indexPath.row, photoNames: userPhotoNames)
+        cell.configure(index: indexPath.row, photo: photos[indexPath.row])
         return cell
     }
 }
@@ -73,7 +78,12 @@ extension FriendPhotoCollectionViewController {
 extension FriendPhotoCollectionViewController {
     // MARK: - Private Methods
 
-    private func networkFetchPhotos() {
-        networkService.fetchPhotos()
+    private func networkFetchPhotos(ownerID: Int) {
+        print(ownerID)
+        networkService.fetchPhotos(ownerID: ownerID) { photos in
+            self.photos = photos
+            print(photos.count)
+            self.collectionView.reloadData()
+        }
     }
 }

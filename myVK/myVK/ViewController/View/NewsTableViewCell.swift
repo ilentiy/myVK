@@ -12,14 +12,4 @@ final class NewsTableViewCell: UITableViewCell {
     @IBOutlet private var newsDataLabel: UILabel!
     @IBOutlet private var newsTextLabel: UILabel!
     @IBOutlet private var postImageView: UIImageView!
-
-    // MARK: - Public Methods
-
-    func configure(news: News) {
-        nameLabel.text = news.user.name
-        avatarImageView.image = UIImage(named: news.user.avatarImageName)
-        newsDataLabel.text = news.newsDateText
-        newsTextLabel.text = news.newsText
-        postImageView.image = UIImage(named: news.photoNames)
-    }
 }

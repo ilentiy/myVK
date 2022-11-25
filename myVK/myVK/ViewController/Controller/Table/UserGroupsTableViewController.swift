@@ -7,11 +7,7 @@ import UIKit
 final class UserGroupsTableViewController: UITableViewController {
     // MARK: - Private Properties
 
-    private var myGroups = Group.getGroups().filter { group in
-        guard group.subscribers?.contains(User.getIlentiy().ID) == true else { return false }
-        return true
-    }
-
+    private var myGroups: [Group] = []
     private let networkService = NetworkService()
 
     // MARK: - LifeCycle
@@ -19,24 +15,6 @@ final class UserGroupsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         networkFetchUserGroup()
-    }
-
-    // MARK: - IBActions
-
-    @IBAction private func addGroupAction(segue: UIStoryboardSegue) {
-        guard
-            segue.identifier == Constants.Identifier.Segue.unwind,
-            let allGroupsController = segue.source as? AllGroupsTableViewController,
-            let indexPath = allGroupsController.tableView.indexPathForSelectedRow
-        else { return }
-        let currentGroup = allGroupsController.searchedGroups[indexPath.row]
-        for var group in Group.getGroups() where group == currentGroup {
-            group.follow(id: User.getIlentiy().ID)
-        }
-        if !myGroups.contains(where: { $0.ID == currentGroup.ID }) {
-            myGroups.append(currentGroup)
-            tableView.reloadData()
-        }
     }
 }
 
@@ -67,9 +45,6 @@ extension UserGroupsTableViewController {
     ) {
         if editingStyle == .delete {
             let currentGroup = myGroups.remove(at: indexPath.row)
-            for var group in Group.getGroups() where group == currentGroup {
-                group.unfollow(id: User.getIlentiy().ID)
-            }
         }
         tableView.deleteRows(at: [indexPath], with: .left)
     }
@@ -81,6 +56,9 @@ extension UserGroupsTableViewController {
     // MARK: - Private Methods
 
     private func networkFetchUserGroup() {
-        networkService.fetchUserGroups()
+        networkService.fetchUserGroups { groups in
+            self.myGroups = groups
+            self.tableView.reloadData()
+        }
     }
 }

@@ -27,8 +27,8 @@ final class FriendTableViewCell: UITableViewCell {
         self.user = user
         avatarImageView.isUserInteractionEnabled = true
         avatarImageView.addGestureRecognizer(gesture)
-        nameLabel.text = user.name
-        avatarImageView.image = UIImage(named: user.avatarImageName)
+        nameLabel.text = "\(user.firstName) \(user.lastName)"
+        avatarImageView.load(url: user.avatar)
     }
 
     // MARK: - Private Methods

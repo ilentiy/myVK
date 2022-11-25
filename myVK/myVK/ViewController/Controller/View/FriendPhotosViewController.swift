@@ -11,7 +11,7 @@ final class FriendPhotosViewController: UIViewController {
 
     // MARK: - Public Properties
 
-    var photoNames: [String] = []
+    var photos: [Photo] = []
     var currentPhotoIndex = 0
 
     // MARK: - Private property
@@ -46,10 +46,11 @@ final class FriendPhotosViewController: UIViewController {
     }
 
     private func configureTitle() {
-        title = "\(currentPhotoIndex + 1) из \(photoNames.count)"
+        title = "\(currentPhotoIndex + 1) из \(photos.count)"
         let panGecognizer = UIPanGestureRecognizer(target: self, action: #selector(onPanAction))
         view.addGestureRecognizer(panGecognizer)
-        photoImageView.image = UIImage(named: photoNames[currentPhotoIndex])
+        guard let url = photos[currentPhotoIndex].sizes.last?.url else { return }
+        photoImageView.load(url: url)
     }
 
     @objc func onPanAction(_ recognizer: UIPanGestureRecognizer) {
@@ -78,7 +79,7 @@ final class FriendPhotosViewController: UIViewController {
             interactiveAnimator.stopAnimation(true)
             var viewWidth = view.frame.width
             if recognizer.translation(in: view).x < 0 {
-                currentPhotoIndex = currentPhotoIndex < photoNames.count - 1 ? currentPhotoIndex + 1 :
+                currentPhotoIndex = currentPhotoIndex < photos.count - 1 ? currentPhotoIndex + 1 :
                     currentPhotoIndex
             } else {
                 currentPhotoIndex = currentPhotoIndex != 0 ? currentPhotoIndex - 1 : currentPhotoIndex
@@ -94,7 +95,8 @@ final class FriendPhotosViewController: UIViewController {
 
         default: break
         }
-        photoImageView.image = UIImage(named: photoNames[currentPhotoIndex])
-        title = "\(currentPhotoIndex + 1) из \(photoNames.count)"
+        guard let url = photos[currentPhotoIndex].sizes.last?.url else { return }
+        photoImageView.load(url: url)
+        title = "\(currentPhotoIndex + 1) из \(photos.count)"
     }
 }

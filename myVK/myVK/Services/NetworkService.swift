@@ -3,6 +3,8 @@
 
 import Alamofire
 import Foundation
+import RealmSwift
+import SwiftyJSON
 
 ///  Сетевой слой
 final class NetworkService {
@@ -28,7 +30,7 @@ final class NetworkService {
         enum ParametersValue {
             static let userID = Session.shared.userID
             static let token = Session.shared.token
-            static let fields = "nickname"
+            static let fields = "photo_100"
             static let extended = "1"
             static let version = "5.131"
         }
@@ -36,7 +38,7 @@ final class NetworkService {
 
     // MARK: - Public Method
 
-    func fetchFriends() {
+    func fetchFriends(completion: @escaping ([User]) -> Void) {
         let urlPath = "\(Constants.baseURL)\(Constants.getFriendsPath)"
         let parametrs: Parameters = [
             Constants.ParametersKey.userID: Constants.ParametersValue.userID,
@@ -44,24 +46,43 @@ final class NetworkService {
             Constants.ParametersKey.token: Constants.ParametersValue.token,
             Constants.ParametersKey.version: Constants.ParametersValue.version
         ]
-        AF.request(urlPath, parameters: parametrs).responseJSON { response in
-            print(response.value ?? "")
+
+        AF.request(urlPath, parameters: parametrs).responseData { [weak self] response in
+            guard
+                let data = response.value
+            else { return }
+            do {
+                let response = try JSONDecoder().decode(UserResult.self, from: data).response
+                let users = response.users
+                completion(users)
+            } catch {
+                completion([])
+            }
         }
     }
 
-    func fetchPhotos() {
+    func fetchPhotos(ownerID: Int, completion: @escaping ([Photo]) -> Void) {
         let urlPath = "\(Constants.baseURL)\(Constants.getPhotosPath)"
         let parametrs: Parameters = [
-            Constants.ParametersKey.ownerID: Constants.ParametersValue.userID,
+            Constants.ParametersKey.ownerID: ownerID,
             Constants.ParametersKey.token: Constants.ParametersValue.token,
             Constants.ParametersKey.version: Constants.ParametersValue.version
         ]
-        AF.request(urlPath, parameters: parametrs).responseJSON { response in
-            print(response.value ?? "")
+        AF.request(urlPath, parameters: parametrs).responseData { [weak self] response in
+            guard
+                let data = response.value
+            else { return }
+            do {
+                let response = try JSONDecoder().decode(PhotoResult.self, from: data).response
+                let photos = response.photos
+                completion(photos)
+            } catch {
+                completion([])
+            }
         }
     }
 
-    func fetchUserGroups() {
+    func fetchUserGroups(completion: @escaping ([Group]) -> Void) {
         let urlPath = "\(Constants.baseURL)\(Constants.getUserGroupPath)"
         let parametrs: Parameters = [
             Constants.ParametersKey.userID: Constants.ParametersValue.userID,
@@ -69,20 +90,50 @@ final class NetworkService {
             Constants.ParametersKey.token: Constants.ParametersValue.token,
             Constants.ParametersKey.version: Constants.ParametersValue.version
         ]
-        AF.request(urlPath, parameters: parametrs).responseJSON { response in
-            print(response.value ?? "")
+        AF.request(urlPath, parameters: parametrs).responseData { [weak self] response in
+            guard
+                let data = response.value
+            else { return }
+            do {
+                let response = try JSONDecoder().decode(GroupResult.self, from: data).response
+                let groups = response.groups
+                completion(groups)
+            } catch {
+                completion([])
+            }
         }
     }
 
-    func fetchGroup(q searchText: String) {
+    func fetchGroup(q searchText: String, completion: @escaping ([Group]) -> Void) {
         let urlPath = "\(Constants.baseURL)\(Constants.getGroupPath)"
         let parametrs: Parameters = [
             Constants.ParametersKey.query: searchText,
             Constants.ParametersKey.token: Constants.ParametersValue.token,
             Constants.ParametersKey.version: Constants.ParametersValue.version
         ]
-        AF.request(urlPath, parameters: parametrs).responseJSON { response in
-            print(response.value ?? "")
+        AF.request(urlPath, parameters: parametrs).responseData { [weak self] response in
+            guard
+                let data = response.value
+            else { return }
+            do {
+                let response = try JSONDecoder().decode(GroupResult.self, from: data).response
+                let groups = response.groups
+                print(groups)
+                completion(groups)
+            } catch {
+                completion([])
+            }
+        }
+    }
+
+    func saveUsersData(_ users: [User]) {
+        do {
+            let realm = try Realm()
+            realm.beginWrite()
+            realm.add(users)
+            try realm.commitWrite()
+        } catch {
+            print(error)
         }
     }
 }
