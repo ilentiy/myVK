@@ -46,7 +46,7 @@ final class FriendPhotosViewController: UIViewController {
     }
 
     private func configureTitle() {
-        title = "\(currentPhotoIndex + 1) из \(photos.count)"
+        title = "\(currentPhotoIndex + 1) \(Constants.from) \(photos.count)"
         let panGecognizer = UIPanGestureRecognizer(target: self, action: #selector(onPanAction))
         view.addGestureRecognizer(panGecognizer)
         guard let url = photos[currentPhotoIndex].sizes.last?.url else { return }
@@ -97,6 +97,6 @@ final class FriendPhotosViewController: UIViewController {
         }
         guard let url = photos[currentPhotoIndex].sizes.last?.url else { return }
         photoImageView.load(url: url)
-        title = "\(currentPhotoIndex + 1) из \(photos.count)"
+        title = "\(currentPhotoIndex + 1) \(Constants.from) \(photos.count)"
     }
 }

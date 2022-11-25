@@ -4,22 +4,6 @@
 import Foundation
 import RealmSwift
 
-///  Ответ запроса
-struct UserResult: Codable {
-    let response: UserResponse
-}
-
-/// Кол-во и список пользователей
-struct UserResponse: Codable {
-    let count: Int
-    let users: [User]
-
-    enum CodingKeys: String, CodingKey {
-        case count
-        case users = "items"
-    }
-}
-
 /// Данные пользователя
 final class User: Object, Codable {
     @objc dynamic var id: Int

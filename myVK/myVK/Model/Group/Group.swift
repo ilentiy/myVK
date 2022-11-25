@@ -4,22 +4,6 @@
 import Foundation
 import RealmSwift
 
-///  Ответ запроса
-struct GroupResult: Codable {
-    let response: GroupResponse
-}
-
-/// Кол-во и список групп
-struct GroupResponse: Codable {
-    let count: Int
-    let groups: [Group]
-
-    enum CodingKeys: String, CodingKey {
-        case count
-        case groups = "items"
-    }
-}
-
 /// Данные группы
 final class Group: Object, Codable {
     @objc dynamic var id: Int

@@ -4,7 +4,6 @@
 import Alamofire
 import Foundation
 import RealmSwift
-import SwiftyJSON
 
 ///  Сетевой слой
 final class NetworkService {
@@ -47,7 +46,7 @@ final class NetworkService {
             Constants.ParametersKey.version: Constants.ParametersValue.version
         ]
 
-        AF.request(urlPath, parameters: parametrs).responseData { [weak self] response in
+        AF.request(urlPath, parameters: parametrs).responseData { response in
             guard
                 let data = response.value
             else { return }
@@ -68,7 +67,7 @@ final class NetworkService {
             Constants.ParametersKey.token: Constants.ParametersValue.token,
             Constants.ParametersKey.version: Constants.ParametersValue.version
         ]
-        AF.request(urlPath, parameters: parametrs).responseData { [weak self] response in
+        AF.request(urlPath, parameters: parametrs).responseData { response in
             guard
                 let data = response.value
             else { return }
@@ -82,6 +81,13 @@ final class NetworkService {
         }
     }
 
+    static func fetchPhotoData(url: String) -> Data {
+        guard let url = URL(string: url),
+              let data = try? Data(contentsOf: url)
+        else { return Data() }
+        return data
+    }
+
     func fetchUserGroups(completion: @escaping ([Group]) -> Void) {
         let urlPath = "\(Constants.baseURL)\(Constants.getUserGroupPath)"
         let parametrs: Parameters = [
@@ -90,7 +96,7 @@ final class NetworkService {
             Constants.ParametersKey.token: Constants.ParametersValue.token,
             Constants.ParametersKey.version: Constants.ParametersValue.version
         ]
-        AF.request(urlPath, parameters: parametrs).responseData { [weak self] response in
+        AF.request(urlPath, parameters: parametrs).responseData { response in
             guard
                 let data = response.value
             else { return }
@@ -111,29 +117,17 @@ final class NetworkService {
             Constants.ParametersKey.token: Constants.ParametersValue.token,
             Constants.ParametersKey.version: Constants.ParametersValue.version
         ]
-        AF.request(urlPath, parameters: parametrs).responseData { [weak self] response in
+        AF.request(urlPath, parameters: parametrs).responseData { response in
             guard
                 let data = response.value
             else { return }
             do {
                 let response = try JSONDecoder().decode(GroupResult.self, from: data).response
                 let groups = response.groups
-                print(groups)
                 completion(groups)
             } catch {
                 completion([])
             }
-        }
-    }
-
-    func saveUsersData(_ users: [User]) {
-        do {
-            let realm = try Realm()
-            realm.beginWrite()
-            realm.add(users)
-            try realm.commitWrite()
-        } catch {
-            print(error)
         }
     }
 }

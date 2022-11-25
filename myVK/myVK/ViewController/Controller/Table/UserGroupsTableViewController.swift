@@ -56,7 +56,8 @@ extension UserGroupsTableViewController {
     // MARK: - Private Methods
 
     private func networkFetchUserGroup() {
-        networkService.fetchUserGroups { groups in
+        networkService.fetchUserGroups { [weak self] groups in
+            guard let self = self else { return }
             self.myGroups = groups
             self.tableView.reloadData()
         }
