@@ -16,7 +16,7 @@ final class FriendPhotoCollectionViewController: UICollectionViewController {
         return "\(firstName)  \(lastName)"
     }()
 
-    // MARK: - Private Methods
+    // MARK: - Private Properties
 
     private let networkService = NetworkService()
 
@@ -79,10 +79,8 @@ extension FriendPhotoCollectionViewController {
     // MARK: - Private Methods
 
     private func networkFetchPhotos(ownerID: Int) {
-        print(ownerID)
         networkService.fetchPhotos(ownerID: ownerID) { photos in
             self.photos = photos
-            print(photos.count)
             self.collectionView.reloadData()
         }
     }
