@@ -73,7 +73,7 @@ extension AllGroupsTableViewController {
     // MARK: - Private Methods
 
     private func networkFetchGroup(searchText: String) {
-        networkService.fetchGroup(q: searchText) { [weak self] groups in
+        networkService.fetchGroup(query: searchText) { [weak self] groups in
             guard let self = self else { return }
             self.searchedGroups = groups
             self.tableView.reloadData()
