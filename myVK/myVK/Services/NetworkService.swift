@@ -88,50 +88,50 @@ final class NetworkService {
         return data
     }
 
-    func fetchFriends(completion: @escaping ([User]) -> Void) {
+    func fetchFriends(completion: @escaping (Result<[User], Error>) -> Void) {
         request(.getFriends) { data in
             guard let data = data else { return }
             do {
                 let response = try JSONDecoder().decode(Response<User>.self, from: data)
-                completion(response.items)
+                completion(.success(response.items))
             } catch {
-                completion([])
+                completion(.failure(error))
             }
         }
     }
 
-    func fetchPhotos(ownerID: Int, completion: @escaping ([Photo]) -> Void) {
+    func fetchPhotos(ownerID: Int, completion: @escaping (Result<[Photo], Error>) -> Void) {
         request(.getPhotoAll(ownerID: ownerID)) { data in
             guard let data = data else { return }
             do {
                 let response = try JSONDecoder().decode(Response<Photo>.self, from: data)
-                completion(response.items)
+                completion(.success(response.items))
             } catch {
-                completion([])
+                completion(.failure(error))
             }
         }
     }
 
-    func fetchUserGroups(completion: @escaping ([Group]) -> Void) {
+    func fetchUserGroups(completion: @escaping (Result<[Group], Error>) -> Void) {
         request(.getGroups) { data in
             guard let data = data else { return }
             do {
                 let response = try JSONDecoder().decode(Response<Group>.self, from: data)
-                completion(response.items)
+                completion(.success(response.items))
             } catch {
-                completion([])
+                completion(.failure(error))
             }
         }
     }
 
-    func fetchGroup(query: String, completion: @escaping ([Group]) -> Void) {
+    func fetchGroup(query: String, completion: @escaping (Result<[Group], Error>) -> Void) {
         request(.getSearchedGroups(query: query)) { data in
             guard let data = data else { return }
             do {
                 let response = try JSONDecoder().decode(Response<Group>.self, from: data)
-                completion(response.items)
+                completion(.success(response.items))
             } catch {
-                completion([])
+                completion(.failure(error))
             }
         }
     }

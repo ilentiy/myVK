@@ -86,11 +86,16 @@ extension FriendsTableViewController {
     // MARK: - Private Methods
 
     private func networkFetchFriends() {
-        networkService.fetchFriends { [weak self] users in
+        networkService.fetchFriends { [weak self] result in
             guard let self = self else { return }
-            self.users = users
-            self.alphabetSort()
-            self.tableView.reloadData()
+            switch result {
+            case let .success(users):
+                self.users = users
+                self.alphabetSort()
+                self.tableView.reloadData()
+            case let .failure(error):
+                print(error.localizedDescription)
+            }
         }
     }
 }

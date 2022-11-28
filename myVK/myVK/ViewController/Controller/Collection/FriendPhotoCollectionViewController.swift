@@ -79,10 +79,15 @@ extension FriendPhotoCollectionViewController {
     // MARK: - Private Methods
 
     private func networkFetchPhotos(ownerID: Int) {
-        networkService.fetchPhotos(ownerID: ownerID) { [weak self] photos in
+        networkService.fetchPhotos(ownerID: ownerID) { [weak self] result in
             guard let self = self else { return }
-            self.photos = photos
-            self.collectionView.reloadData()
+            switch result {
+            case let .success(photos):
+                self.photos = photos
+                self.collectionView.reloadData()
+            case let .failure(error):
+                print(error.localizedDescription)
+            }
         }
     }
 }
