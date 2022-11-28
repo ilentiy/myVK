@@ -3,6 +3,7 @@
 
 /// Константы
 enum Constants {
+    static let from = "из"
     enum Identifier {
         enum Segue {
             static let loginSegue = "login"

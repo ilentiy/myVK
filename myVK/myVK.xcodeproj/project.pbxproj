@@ -7,13 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0920ECD0291301C6009E2849 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0920ECCF291301C6009E2849 /* Model.swift */; };
 		0928241D291AF246004EF4D0 /* LoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0928241C291AF246004EF4D0 /* LoaderView.swift */; };
 		092D787C291A3920008B5816 /* NewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092D787B291A3920008B5816 /* NewsTableViewController.swift */; };
 		092D787E291A6C62008B5816 /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092D787D291A6C62008B5816 /* NewsTableViewCell.swift */; };
 		096130A1292D5D88006AF1AC /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096130A0292D5D88006AF1AC /* NetworkService.swift */; };
 		096130A6292D649F006AF1AC /* VKWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096130A5292D649F006AF1AC /* VKWebViewController.swift */; };
 		096130A8292D664D006AF1AC /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 096130A7292D664D006AF1AC /* WebKit.framework */; };
+		097F4798292FEFB000F11B3E /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097F4797292FEFB000F11B3E /* Group.swift */; };
+		097F479A292FEFC300F11B3E /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097F4799292FEFC300F11B3E /* Photo.swift */; };
 		09A62C7E292D01C400E53700 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A62C7D292D01C400E53700 /* Session.swift */; };
 		09B66A5F2911BED100E7BA49 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B66A5E2911BED100E7BA49 /* LogInViewController.swift */; };
 		09B66A652911C01200E7BA49 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B66A642911C01200E7BA49 /* UITextField+Extension.swift */; };
@@ -32,21 +33,27 @@
 		09E71FCD291D7B1F00286818 /* CustomTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E71FCC291D7B1F00286818 /* CustomTransition.swift */; };
 		09E71FCF291D9F2C00286818 /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E71FCE291D9F2C00286818 /* CustomNavigationController.swift */; };
 		09E9BE0C291D0DCD00DBBD4E /* FriendPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E9BE0B291D0DCD00DBBD4E /* FriendPhotosViewController.swift */; };
+		09EB1BD929300723005664A5 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09EB1BD829300723005664A5 /* UIImageView+Extension.swift */; };
+		09EB1BE229315202005664A5 /* PhotoSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09EB1BE129315202005664A5 /* PhotoSize.swift */; };
+		09EB1BF029340054005664A5 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09EB1BEF29340054005664A5 /* Response.swift */; };
 		09F1084B2914EC52000E8D76 /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F1084A2914EC52000E8D76 /* ShadowView.swift */; };
 		09F1084D2914ED25000E8D76 /* LikeControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F1084C2914ED25000E8D76 /* LikeControl.swift */; };
 		09F1084F29184D19000E8D76 /* GroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F1084E29184D19000E8D76 /* GroupTableViewCell.swift */; };
+		09F1327F292EBE9B0085837F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F1327E292EBE9B0085837F /* User.swift */; };
 		09F23F1A291480D700876619 /* FriendPhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F23F19291480D700876619 /* FriendPhotosCollectionViewCell.swift */; };
-		66C63CF1EDAAA8296AAE9B90 /* Pods_myVK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D16BECCE8A682789ED8B4BFB /* Pods_myVK.framework */; };
+		0A780A45251D05AD73CC1F3A /* Pods_myVK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 071BDC2862D2586F9C16954E /* Pods_myVK.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0920ECCF291301C6009E2849 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		071BDC2862D2586F9C16954E /* Pods_myVK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_myVK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0928241C291AF246004EF4D0 /* LoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderView.swift; sourceTree = "<group>"; };
 		092D787B291A3920008B5816 /* NewsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewController.swift; sourceTree = "<group>"; };
 		092D787D291A6C62008B5816 /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
 		096130A0292D5D88006AF1AC /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		096130A5292D649F006AF1AC /* VKWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKWebViewController.swift; sourceTree = "<group>"; };
 		096130A7292D664D006AF1AC /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		097F4797292FEFB000F11B3E /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		097F4799292FEFC300F11B3E /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		09A62C7D292D01C400E53700 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		09B66A5E2911BED100E7BA49 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		09B66A642911C01200E7BA49 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
@@ -68,13 +75,16 @@
 		09E71FCC291D7B1F00286818 /* CustomTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTransition.swift; sourceTree = "<group>"; };
 		09E71FCE291D9F2C00286818 /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
 		09E9BE0B291D0DCD00DBBD4E /* FriendPhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendPhotosViewController.swift; sourceTree = "<group>"; };
+		09EB1BD829300723005664A5 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
+		09EB1BE129315202005664A5 /* PhotoSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSize.swift; sourceTree = "<group>"; };
+		09EB1BEF29340054005664A5 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		09F1084A2914EC52000E8D76 /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
 		09F1084C2914ED25000E8D76 /* LikeControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeControl.swift; sourceTree = "<group>"; };
 		09F1084E29184D19000E8D76 /* GroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTableViewCell.swift; sourceTree = "<group>"; };
+		09F1327E292EBE9B0085837F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		09F23F19291480D700876619 /* FriendPhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendPhotosCollectionViewCell.swift; sourceTree = "<group>"; };
-		503FB51AEF5BB77E3E3E78AC /* Pods-myVK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myVK.debug.xcconfig"; path = "Target Support Files/Pods-myVK/Pods-myVK.debug.xcconfig"; sourceTree = "<group>"; };
-		D159B48B9798262C43559254 /* Pods-myVK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myVK.release.xcconfig"; path = "Target Support Files/Pods-myVK/Pods-myVK.release.xcconfig"; sourceTree = "<group>"; };
-		D16BECCE8A682789ED8B4BFB /* Pods_myVK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_myVK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F946BE8A356DB2DEA056EAE4 /* Pods-myVK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myVK.debug.xcconfig"; path = "Target Support Files/Pods-myVK/Pods-myVK.debug.xcconfig"; sourceTree = "<group>"; };
+		FB0C0373BCC026685CE93BA3 /* Pods-myVK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myVK.release.xcconfig"; path = "Target Support Files/Pods-myVK/Pods-myVK.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,7 +93,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				096130A8292D664D006AF1AC /* WebKit.framework in Frameworks */,
-				66C63CF1EDAAA8296AAE9B90 /* Pods_myVK.framework in Frameworks */,
+				0A780A45251D05AD73CC1F3A /* Pods_myVK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,7 +103,10 @@
 		0920ECD1291301CE009E2849 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				0920ECCF291301C6009E2849 /* Model.swift */,
+				09EB1BEF29340054005664A5 /* Response.swift */,
+				09EB1BDC29315185005664A5 /* Group */,
+				09EB1BDA2931516D005664A5 /* Photos */,
+				09EB1BF1293400E1005664A5 /* User */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -138,6 +151,7 @@
 			children = (
 				09B66A642911C01200E7BA49 /* UITextField+Extension.swift */,
 				09B66A6929129ECF00E7BA49 /* UIViewController+Extension.swift */,
+				09EB1BD829300723005664A5 /* UIImageView+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -249,11 +263,36 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		09EB1BDA2931516D005664A5 /* Photos */ = {
+			isa = PBXGroup;
+			children = (
+				097F4799292FEFC300F11B3E /* Photo.swift */,
+				09EB1BE129315202005664A5 /* PhotoSize.swift */,
+			);
+			path = Photos;
+			sourceTree = "<group>";
+		};
+		09EB1BDC29315185005664A5 /* Group */ = {
+			isa = PBXGroup;
+			children = (
+				097F4797292FEFB000F11B3E /* Group.swift */,
+			);
+			path = Group;
+			sourceTree = "<group>";
+		};
+		09EB1BF1293400E1005664A5 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				09F1327E292EBE9B0085837F /* User.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
 		40B325003BB06A08A6243492 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				096130A7292D664D006AF1AC /* WebKit.framework */,
-				D16BECCE8A682789ED8B4BFB /* Pods_myVK.framework */,
+				071BDC2862D2586F9C16954E /* Pods_myVK.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -261,8 +300,8 @@
 		F8D7CFDE7DA6BCC33A619D6E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				503FB51AEF5BB77E3E3E78AC /* Pods-myVK.debug.xcconfig */,
-				D159B48B9798262C43559254 /* Pods-myVK.release.xcconfig */,
+				F946BE8A356DB2DEA056EAE4 /* Pods-myVK.debug.xcconfig */,
+				FB0C0373BCC026685CE93BA3 /* Pods-myVK.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -274,13 +313,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 09D3D9C429106A53007DFCFC /* Build configuration list for PBXNativeTarget "myVK" */;
 			buildPhases = (
-				89B66191A93C8F8C702F3D37 /* [CP] Check Pods Manifest.lock */,
+				0AD35BAC17F96683AA289292 /* [CP] Check Pods Manifest.lock */,
 				09D3D9AC29106A51007DFCFC /* Sources */,
 				09D3D9AD29106A51007DFCFC /* Frameworks */,
 				09D3D9AE29106A51007DFCFC /* Resources */,
 				09D3D9C729106AA9007DFCFC /* Swift Format */,
 				09D3D9C829106AE7007DFCFC /* Swift Lint */,
-				B51E76DC352EC91ABD936C08 /* [CP] Embed Pods Frameworks */,
+				64D4B0662F7660CB7C7AB6BA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -376,7 +415,7 @@
 			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		89B66191A93C8F8C702F3D37 /* [CP] Check Pods Manifest.lock */ = {
+		0AD35BAC17F96683AA289292 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -398,7 +437,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B51E76DC352EC91ABD936C08 /* [CP] Embed Pods Frameworks */ = {
+		64D4B0662F7660CB7C7AB6BA /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -422,14 +461,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09F1327F292EBE9B0085837F /* User.swift in Sources */,
 				09E71FCF291D9F2C00286818 /* CustomNavigationController.swift in Sources */,
-				0920ECD0291301C6009E2849 /* Model.swift in Sources */,
+				09EB1BF029340054005664A5 /* Response.swift in Sources */,
+				09EB1BD929300723005664A5 /* UIImageView+Extension.swift in Sources */,
+				09EB1BE229315202005664A5 /* PhotoSize.swift in Sources */,
 				09E71FCD291D7B1F00286818 /* CustomTransition.swift in Sources */,
 				09B66A6A29129ECF00E7BA49 /* UIViewController+Extension.swift in Sources */,
 				09E9BE0C291D0DCD00DBBD4E /* FriendPhotosViewController.swift in Sources */,
 				09F1084D2914ED25000E8D76 /* LikeControl.swift in Sources */,
 				09E4BBE22913C1C400E78CED /* FriendsTableViewController.swift in Sources */,
 				09F23F1A291480D700876619 /* FriendPhotosCollectionViewCell.swift in Sources */,
+				097F4798292FEFB000F11B3E /* Group.swift in Sources */,
 				096130A6292D649F006AF1AC /* VKWebViewController.swift in Sources */,
 				09B66A672911C15D00E7BA49 /* Constants.swift in Sources */,
 				09B66A5F2911BED100E7BA49 /* LogInViewController.swift in Sources */,
@@ -440,6 +483,7 @@
 				09D3D9B429106A51007DFCFC /* AppDelegate.swift in Sources */,
 				09E4BBE62913C1F600E78CED /* AllGroupsTableViewController.swift in Sources */,
 				09E4BBE42913C1E600E78CED /* UserGroupsTableViewController.swift in Sources */,
+				097F479A292FEFC300F11B3E /* Photo.swift in Sources */,
 				09D3D9B629106A51007DFCFC /* SceneDelegate.swift in Sources */,
 				09F1084B2914EC52000E8D76 /* ShadowView.swift in Sources */,
 				09A62C7E292D01C400E53700 /* Session.swift in Sources */,
@@ -588,7 +632,7 @@
 		};
 		09D3D9C529106A53007DFCFC /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 503FB51AEF5BB77E3E3E78AC /* Pods-myVK.debug.xcconfig */;
+			baseConfigurationReference = F946BE8A356DB2DEA056EAE4 /* Pods-myVK.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -617,7 +661,7 @@
 		};
 		09D3D9C629106A53007DFCFC /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D159B48B9798262C43559254 /* Pods-myVK.release.xcconfig */;
+			baseConfigurationReference = FB0C0373BCC026685CE93BA3 /* Pods-myVK.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

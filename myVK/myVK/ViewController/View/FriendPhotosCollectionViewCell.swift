@@ -11,13 +11,13 @@ final class FriendPhotosCollectionViewCell: UICollectionViewCell {
 
     // MARK: - Public Properties
 
-    private(set) var photoNames: [String]?
-    private(set) var currentPhotoIndex: Int?
+    private(set) var currentPhotoIndex = 0
 
     // MARK: - Public Methods
 
-    func configure(photoNameIndex: Int, photoNames: [String]) {
-        self.photoNames = photoNames
-        photoImageView.image = UIImage(named: photoNames[photoNameIndex])
+    func configure(index: Int, photo: Photo) {
+        currentPhotoIndex = index
+        guard let url = photo.sizes.last?.url else { return }
+        photoImageView.load(url: url)
     }
 }

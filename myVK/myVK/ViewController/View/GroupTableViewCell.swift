@@ -12,7 +12,7 @@ final class GroupTableViewCell: UITableViewCell {
 
     // MARK: - Public Properties
 
-    var group: Group?
+    private(set) var group: Group?
 
     // MARK: - Public Methods
 
@@ -22,7 +22,7 @@ final class GroupTableViewCell: UITableViewCell {
         avatarImageView.isUserInteractionEnabled = true
         avatarImageView.addGestureRecognizer(gesture)
         nameLabel.text = group.name
-        avatarImageView.image = UIImage(named: group.avatarImageName)
+        avatarImageView.load(url: group.avatar)
     }
 
     // MARK: - Private Method

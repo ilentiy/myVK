@@ -7,11 +7,7 @@ import UIKit
 final class FriendsTableViewController: UITableViewController {
     // MARK: Private Properties
 
-    private let friends = User.getUsers().filter { user in
-        guard let friend = User.getIlentiy().friendIDs?.contains(user.ID) else { return false }
-        return friend
-    }
-
+    private var users: [User] = []
     private let interactiveTransition = InteractiveTransition()
     private let networkService = NetworkService()
     private var sectionsMap: [Character: [User]] = [:]
@@ -21,7 +17,6 @@ final class FriendsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        alphabetSort()
         networkFetchFriends()
     }
 
@@ -37,12 +32,12 @@ final class FriendsTableViewController: UITableViewController {
     // MARK: - Private Methods
 
     private func alphabetSort() {
-        for friend in friends {
-            guard let firstLetter = friend.name.first else { return }
+        for user in users {
+            guard let firstLetter = user.firstName.first else { return }
             if sectionsMap[firstLetter] != nil {
-                sectionsMap[firstLetter]?.append(friend)
+                sectionsMap[firstLetter]?.append(user)
             } else {
-                sectionsMap[firstLetter] = [friend]
+                sectionsMap[firstLetter] = [user]
             }
         }
         sectionTitles = Array(sectionsMap.keys).sorted()
@@ -75,12 +70,12 @@ extension FriendsTableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let friend = sectionsMap[sectionTitles[indexPath.section]]?[indexPath.row],
+        guard let user = sectionsMap[sectionTitles[indexPath.section]]?[indexPath.row],
               let cell = tableView.dequeueReusableCell(
                   withIdentifier: Constants.Identifier.TableViewCell.friend,
                   for: indexPath
               ) as? FriendTableViewCell else { return UITableViewCell() }
-        cell.configure(user: friend)
+        cell.configure(user: user)
         return cell
     }
 }
@@ -91,6 +86,11 @@ extension FriendsTableViewController {
     // MARK: - Private Methods
 
     private func networkFetchFriends() {
-        networkService.fetchFriends()
+        networkService.fetchFriends { [weak self] users in
+            guard let self = self else { return }
+            self.users = users
+            self.alphabetSort()
+            self.tableView.reloadData()
+        }
     }
 }

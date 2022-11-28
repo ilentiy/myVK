@@ -11,14 +11,8 @@ final class AllGroupsTableViewController: UITableViewController {
 
     // MARK: - Private Properties
 
+    private var searchedGroups: [Group] = []
     private let networkService = NetworkService()
-
-    private var allGroups = Group.getGroups().filter { group in
-        guard group.subscribers?.contains(User.getIlentiy().ID) == false else { return false }
-        return true
-    }
-
-    private(set) var searchedGroups: [Group] = []
 
     // MARK: - LifeCycle
 
@@ -41,7 +35,6 @@ final class AllGroupsTableViewController: UITableViewController {
         searchBar.placeholder = Constants.Text.searchBarPlaceholder
         searchBar.sizeToFit()
         tableView.tableHeaderView = searchBar
-        searchedGroups = allGroups
     }
 }
 
@@ -70,8 +63,6 @@ extension AllGroupsTableViewController {
 
 extension AllGroupsTableViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        searchedGroups = searchText.isEmpty ? allGroups : allGroups.filter { $0.name.contains(searchText) }
-        tableView.reloadData()
         networkFetchGroup(searchText: searchText)
     }
 }
@@ -82,6 +73,10 @@ extension AllGroupsTableViewController {
     // MARK: - Private Methods
 
     private func networkFetchGroup(searchText: String) {
-        networkService.fetchGroup(q: searchText)
+        networkService.fetchGroup(query: searchText) { [weak self] groups in
+            guard let self = self else { return }
+            self.searchedGroups = groups
+            self.tableView.reloadData()
+        }
     }
 }

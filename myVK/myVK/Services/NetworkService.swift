@@ -3,6 +3,7 @@
 
 import Alamofire
 import Foundation
+import RealmSwift
 
 ///  Сетевой слой
 final class NetworkService {
@@ -28,61 +29,122 @@ final class NetworkService {
         enum ParametersValue {
             static let userID = Session.shared.userID
             static let token = Session.shared.token
-            static let fields = "nickname"
+            static let fields = "photo_100"
             static let extended = "1"
             static let version = "5.131"
+        }
+
+        static let baseParameters: Parameters = [
+            Constants.ParametersKey.token: Constants.ParametersValue.token,
+            Constants.ParametersKey.version: Constants.ParametersValue.version
+        ]
+    }
+
+    enum ApiMethod {
+        case getFriends
+        case getPhotoAll(ownerID: Int)
+        case getGroups
+        case getSearchedGroups(query: String)
+
+        var path: String {
+            switch self {
+            case .getFriends:
+                return Constants.getFriendsPath
+            case .getPhotoAll:
+                return Constants.getPhotosPath
+            case .getGroups:
+                return Constants.getUserGroupPath
+            case .getSearchedGroups:
+                return Constants.getGroupPath
+            }
+        }
+
+        var parametrs: Parameters {
+            switch self {
+            case .getFriends:
+                return [
+                    Constants.ParametersKey.userID: Constants.ParametersValue.userID,
+                    Constants.ParametersKey.fields: Constants.ParametersValue.fields,
+                ]
+            case let .getPhotoAll(ownerID):
+                return [Constants.ParametersKey.ownerID: ownerID]
+            case .getGroups:
+                return [
+                    Constants.ParametersKey.userID: Constants.ParametersValue.userID,
+                    Constants.ParametersKey.extended: Constants.ParametersValue.extended,
+                ]
+            case let .getSearchedGroups(query):
+                return [Constants.ParametersKey.query: query]
+            }
         }
     }
 
     // MARK: - Public Method
 
-    func fetchFriends() {
-        let urlPath = "\(Constants.baseURL)\(Constants.getFriendsPath)"
-        let parametrs: Parameters = [
-            Constants.ParametersKey.userID: Constants.ParametersValue.userID,
-            Constants.ParametersKey.fields: Constants.ParametersValue.fields,
-            Constants.ParametersKey.token: Constants.ParametersValue.token,
-            Constants.ParametersKey.version: Constants.ParametersValue.version
-        ]
-        AF.request(urlPath, parameters: parametrs).responseJSON { response in
-            print(response.value ?? "")
+    static func fetchPhotoData(url: String) -> Data {
+        guard let url = URL(string: url),
+              let data = try? Data(contentsOf: url)
+        else { return Data() }
+        return data
+    }
+
+    func fetchFriends(completion: @escaping ([User]) -> Void) {
+        request(.getFriends) { data in
+            guard let data = data else { return }
+            do {
+                let response = try JSONDecoder().decode(Response<User>.self, from: data)
+                completion(response.items)
+            } catch {
+                completion([])
+            }
         }
     }
 
-    func fetchPhotos() {
-        let urlPath = "\(Constants.baseURL)\(Constants.getPhotosPath)"
-        let parametrs: Parameters = [
-            Constants.ParametersKey.ownerID: Constants.ParametersValue.userID,
-            Constants.ParametersKey.token: Constants.ParametersValue.token,
-            Constants.ParametersKey.version: Constants.ParametersValue.version
-        ]
-        AF.request(urlPath, parameters: parametrs).responseJSON { response in
-            print(response.value ?? "")
+    func fetchPhotos(ownerID: Int, completion: @escaping ([Photo]) -> Void) {
+        request(.getPhotoAll(ownerID: ownerID)) { data in
+            guard let data = data else { return }
+            do {
+                let response = try JSONDecoder().decode(Response<Photo>.self, from: data)
+                completion(response.items)
+            } catch {
+                completion([])
+            }
         }
     }
 
-    func fetchUserGroups() {
-        let urlPath = "\(Constants.baseURL)\(Constants.getUserGroupPath)"
-        let parametrs: Parameters = [
-            Constants.ParametersKey.userID: Constants.ParametersValue.userID,
-            Constants.ParametersKey.extended: Constants.ParametersValue.extended,
-            Constants.ParametersKey.token: Constants.ParametersValue.token,
-            Constants.ParametersKey.version: Constants.ParametersValue.version
-        ]
-        AF.request(urlPath, parameters: parametrs).responseJSON { response in
-            print(response.value ?? "")
+    func fetchUserGroups(completion: @escaping ([Group]) -> Void) {
+        request(.getGroups) { data in
+            guard let data = data else { return }
+            do {
+                let response = try JSONDecoder().decode(Response<Group>.self, from: data)
+                completion(response.items)
+            } catch {
+                completion([])
+            }
         }
     }
 
-    func fetchGroup(q searchText: String) {
-        let urlPath = "\(Constants.baseURL)\(Constants.getGroupPath)"
-        let parametrs: Parameters = [
-            Constants.ParametersKey.query: searchText,
-            Constants.ParametersKey.token: Constants.ParametersValue.token,
-            Constants.ParametersKey.version: Constants.ParametersValue.version
-        ]
-        AF.request(urlPath, parameters: parametrs).responseJSON { response in
-            print(response.value ?? "")
+    func fetchGroup(query: String, completion: @escaping ([Group]) -> Void) {
+        request(.getSearchedGroups(query: query)) { data in
+            guard let data = data else { return }
+            do {
+                let response = try JSONDecoder().decode(Response<Group>.self, from: data)
+                completion(response.items)
+            } catch {
+                completion([])
+            }
+        }
+    }
+
+    // MARK: - Private Methods
+
+    private func request(_ method: ApiMethod, completion: @escaping (Data?) -> Void) {
+        let urlPath = "\(Constants.baseURL)\(method.path)"
+        let parametrs = method.parametrs.merging(Constants.baseParameters) { _, _ in }
+        AF.request(urlPath, parameters: parametrs).responseData { response in
+            if let data = response.data {
+                completion(data)
+            }
         }
     }
 }

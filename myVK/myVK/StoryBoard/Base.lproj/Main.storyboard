@@ -203,7 +203,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="kUb-u3-kcR">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="nh7-5h-1Ad" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBar" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="nh7-5h-1Ad" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="VWx-3I-Mse"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="aFa-q4-CNJ">
@@ -251,7 +251,7 @@
         <!--Друзья-->
         <scene sceneID="6dN-nz-tla">
             <objects>
-                <tableViewController id="UBP-jm-n70" customClass="FriendsTableViewController" customModule="myVK" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="Friend" useStoryboardIdentifierAsRestorationIdentifier="YES" id="UBP-jm-n70" customClass="FriendsTableViewController" customModule="myVK" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="fYg-eJ-b8C">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -619,7 +619,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rjR-vH-iFH">
-                                            <rect key="frame" x="72" y="19.5" width="42" height="21"/>
+                                            <rect key="frame" x="72" y="19.5" width="275" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -630,8 +630,10 @@
                                         <constraint firstItem="rjR-vH-iFH" firstAttribute="leading" secondItem="Thh-8k-IqQ" secondAttribute="trailing" constant="12" id="3AO-pT-Fr8"/>
                                         <constraint firstItem="Thh-8k-IqQ" firstAttribute="centerY" secondItem="9v1-M4-nnm" secondAttribute="centerY" id="CRl-OM-1zN"/>
                                         <constraint firstItem="Thh-8k-IqQ" firstAttribute="leading" secondItem="9v1-M4-nnm" secondAttribute="leading" constant="12" id="cDr-7N-ggt"/>
+                                        <constraint firstItem="rjR-vH-iFH" firstAttribute="leading" secondItem="Thh-8k-IqQ" secondAttribute="trailing" constant="12" id="iAy-XR-X9V"/>
                                         <constraint firstItem="Thh-8k-IqQ" firstAttribute="top" secondItem="9v1-M4-nnm" secondAttribute="top" constant="6" id="kTm-0k-gJc"/>
                                         <constraint firstAttribute="bottom" secondItem="Thh-8k-IqQ" secondAttribute="bottom" constant="6" id="nvd-Ag-H4M"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="rjR-vH-iFH" secondAttribute="trailing" constant="12" id="yK9-ut-hdA"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -691,7 +693,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9r3-SJ-B2i">
-                                            <rect key="frame" x="72" y="19.5" width="42" height="21"/>
+                                            <rect key="frame" x="72" y="19.5" width="275" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -699,8 +701,10 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="eBg-7l-D4m" firstAttribute="top" secondItem="DRJ-U1-sfF" secondAttribute="top" constant="6" id="5iU-Sh-cQh"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="9r3-SJ-B2i" secondAttribute="trailing" constant="12" id="7Ru-f9-KOp"/>
                                         <constraint firstAttribute="bottom" secondItem="eBg-7l-D4m" secondAttribute="bottom" constant="6" id="7ZC-O9-62P"/>
                                         <constraint firstItem="eBg-7l-D4m" firstAttribute="centerY" secondItem="DRJ-U1-sfF" secondAttribute="centerY" id="92b-wN-4w2"/>
+                                        <constraint firstItem="9r3-SJ-B2i" firstAttribute="leading" secondItem="eBg-7l-D4m" secondAttribute="trailing" constant="12" id="HkN-tK-sp9"/>
                                         <constraint firstItem="9r3-SJ-B2i" firstAttribute="centerY" secondItem="DRJ-U1-sfF" secondAttribute="centerY" id="Tvh-tx-5gr"/>
                                         <constraint firstItem="9r3-SJ-B2i" firstAttribute="leading" secondItem="eBg-7l-D4m" secondAttribute="trailing" constant="12" id="bMw-Zg-Kms"/>
                                         <constraint firstItem="eBg-7l-D4m" firstAttribute="leading" secondItem="DRJ-U1-sfF" secondAttribute="leading" constant="12" id="moO-Ea-W2A"/>
