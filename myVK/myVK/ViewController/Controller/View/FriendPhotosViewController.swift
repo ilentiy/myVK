@@ -11,7 +11,9 @@ final class FriendPhotosViewController: UIViewController {
 
     // MARK: - Public Properties
 
+    // var photos: [Photo] = []
     var photos: [Photo] = []
+
     var currentPhotoIndex = 0
 
     // MARK: - Private property
@@ -49,8 +51,9 @@ final class FriendPhotosViewController: UIViewController {
         title = "\(currentPhotoIndex + 1) \(Constants.from) \(photos.count)"
         let panGecognizer = UIPanGestureRecognizer(target: self, action: #selector(onPanAction))
         view.addGestureRecognizer(panGecognizer)
-        guard let url = photos[currentPhotoIndex].sizes.last?.url else { return }
+        guard let url = photos[currentPhotoIndex].photoUrl.last?.url else { return }
         photoImageView.load(url: url)
+        // photoImageView.load(url: photos[currentPhotoIndex].url)
     }
 
     @objc func onPanAction(_ recognizer: UIPanGestureRecognizer) {
@@ -95,8 +98,10 @@ final class FriendPhotosViewController: UIViewController {
 
         default: break
         }
-        guard let url = photos[currentPhotoIndex].sizes.last?.url else { return }
+        guard let url = photos[currentPhotoIndex].photoUrl.last?.url else { return }
         photoImageView.load(url: url)
+        // photoImageView.load(url: photos[currentPhotoIndex].url)
+
         title = "\(currentPhotoIndex + 1) \(Constants.from) \(photos.count)"
     }
 }

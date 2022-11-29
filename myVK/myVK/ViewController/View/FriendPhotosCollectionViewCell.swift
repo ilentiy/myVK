@@ -17,7 +17,7 @@ final class FriendPhotosCollectionViewCell: UICollectionViewCell {
 
     func configure(index: Int, photo: Photo) {
         currentPhotoIndex = index
-        guard let url = photo.sizes.last?.url else { return }
+        guard let url = photo.photoUrl.last?.url else { return }
         photoImageView.load(url: url)
     }
 }

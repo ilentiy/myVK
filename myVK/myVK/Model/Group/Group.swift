@@ -6,10 +6,10 @@ import RealmSwift
 
 /// Данные группы
 final class Group: Object, Codable {
-    @objc dynamic var id: Int
-    @objc dynamic var name: String
-    @objc dynamic var screenName: String
-    @objc dynamic var avatar: String
+    @Persisted(primaryKey: true) var id: Int
+    @Persisted var name: String
+    @Persisted var screenName: String
+    @Persisted var avatar: String
 
     enum CodingKeys: String, CodingKey {
         case id

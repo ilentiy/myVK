@@ -79,6 +79,8 @@ final class NetworkService {
         }
     }
 
+    let realmService = RealmService()
+
     // MARK: - Public Method
 
     static func fetchPhotoData(url: String) -> Data {
@@ -93,6 +95,7 @@ final class NetworkService {
             guard let data = data else { return }
             do {
                 let response = try JSONDecoder().decode(Response<User>.self, from: data)
+                self.realmService.saveData(response.items)
                 completion(.success(response.items))
             } catch {
                 completion(.failure(error))
@@ -105,6 +108,7 @@ final class NetworkService {
             guard let data = data else { return }
             do {
                 let response = try JSONDecoder().decode(Response<Photo>.self, from: data)
+                self.realmService.saveData(response.items)
                 completion(.success(response.items))
             } catch {
                 completion(.failure(error))
@@ -117,6 +121,7 @@ final class NetworkService {
             guard let data = data else { return }
             do {
                 let response = try JSONDecoder().decode(Response<Group>.self, from: data)
+                self.realmService.saveData(response.items)
                 completion(.success(response.items))
             } catch {
                 completion(.failure(error))
@@ -129,6 +134,7 @@ final class NetworkService {
             guard let data = data else { return }
             do {
                 let response = try JSONDecoder().decode(Response<Group>.self, from: data)
+                self.realmService.saveData(response.items)
                 completion(.success(response.items))
             } catch {
                 completion(.failure(error))
@@ -141,6 +147,7 @@ final class NetworkService {
     private func request(_ method: ApiMethod, completion: @escaping (Data?) -> Void) {
         let urlPath = "\(Constants.baseURL)\(method.path)"
         let parametrs = method.parametrs.merging(Constants.baseParameters) { _, _ in }
+        print(parametrs)
         AF.request(urlPath, parameters: parametrs).responseData { response in
             if let data = response.data {
                 completion(data)

@@ -1,6 +1,7 @@
 // FriendPhotoCollectionViewController.swift
 // Copyright © RoadMap. All rights reserved.
 
+import RealmSwift
 import UIKit
 
 /// Экран профиля друга
@@ -9,6 +10,7 @@ final class FriendPhotoCollectionViewController: UICollectionViewController {
 
     var user: User?
     var photos: [Photo] = []
+
     lazy var fullName: String = {
         guard let firstName = user?.firstName,
               let lastName = user?.lastName
@@ -43,7 +45,7 @@ final class FriendPhotoCollectionViewController: UICollectionViewController {
 
     private func configureUI() {
         title = fullName
-        networkFetchPhotos(ownerID: user?.id ?? 0)
+        loadRealmData(ownerID: user?.id ?? 0)
     }
 }
 
@@ -77,6 +79,21 @@ extension FriendPhotoCollectionViewController {
 
 extension FriendPhotoCollectionViewController {
     // MARK: - Private Methods
+
+    private func loadRealmData(ownerID: Int) {
+        do {
+            let realm = try Realm()
+            let items = Array(realm.objects(Photo.self).where { $0.ownerID == ownerID })
+            if photos != items {
+                photos = items
+            } else {
+                networkFetchPhotos(ownerID: ownerID)
+            }
+        } catch {
+            print(error)
+        }
+        collectionView.reloadData()
+    }
 
     private func networkFetchPhotos(ownerID: Int) {
         networkService.fetchPhotos(ownerID: ownerID) { [weak self] result in

@@ -1,23 +1,26 @@
 // FriendsTableViewController.swift
 // Copyright © RoadMap. All rights reserved.
 
+import RealmSwift
 import UIKit
 
 /// Экран списка друзей
 final class FriendsTableViewController: UITableViewController {
     // MARK: Private Properties
 
-    private var users: [User] = []
     private let interactiveTransition = InteractiveTransition()
+    private let realmService = RealmService()
     private let networkService = NetworkService()
+    private var users: Results<User>?
     private var sectionsMap: [Character: [User]] = [:]
     private var sectionTitles: [Character] = []
+    private var notificationToken: NotificationToken?
 
     // MARK: - LifeCycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        networkFetchFriends()
+        loadRealmData()
     }
 
     // MARK: - Public Methods
@@ -32,6 +35,7 @@ final class FriendsTableViewController: UITableViewController {
     // MARK: - Private Methods
 
     private func alphabetSort() {
+        guard let users = users else { return }
         for user in users {
             guard let firstLetter = user.firstName.first else { return }
             if sectionsMap[firstLetter] != nil {
@@ -80,19 +84,48 @@ extension FriendsTableViewController {
     }
 }
 
-// MARK: - Network Secrvice Method
+// MARK: - Secrvice Method
 
 extension FriendsTableViewController {
     // MARK: - Private Methods
 
-    private func networkFetchFriends() {
-        networkService.fetchFriends { [weak self] result in
-            guard let self = self else { return }
-            switch result {
-            case let .success(users):
-                self.users = users
+    private func addNotificationToken(result: Results<User>) {
+        notificationToken = result.observe { (changes: RealmCollectionChange) in
+            switch changes {
+            case .initial:
+                break
+            case .update:
+                self.users = result
                 self.alphabetSort()
                 self.tableView.reloadData()
+            case let .error(error):
+                fatalError("\(error)")
+            }
+        }
+    }
+
+    private func loadRealmData() {
+        do {
+            let realm = try Realm()
+            let items = realm.objects(User.self)
+            addNotificationToken(result: items)
+            if !items.isEmpty {
+                users = items
+            } else {
+                networkFetchFriends()
+            }
+            alphabetSort()
+            tableView.reloadData()
+        } catch {
+            print(error)
+        }
+    }
+
+    private func networkFetchFriends() {
+        networkService.fetchFriends { result in
+            switch result {
+            case .success:
+                break
             case let .failure(error):
                 print(error.localizedDescription)
             }

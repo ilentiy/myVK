@@ -6,11 +6,13 @@ import RealmSwift
 
 /// Данные фото
 final class Photo: Object, Codable {
-    @objc dynamic var ownerID: Int
-    let sizes: [Size]
+    @Persisted(primaryKey: true) var id: Int
+    @Persisted var ownerID: Int
+    @Persisted var photoUrl: List<PhotoUrl>
 
     enum CodingKeys: String, CodingKey {
+        case id
         case ownerID = "owner_id"
-        case sizes
+        case photoUrl = "sizes"
     }
 }

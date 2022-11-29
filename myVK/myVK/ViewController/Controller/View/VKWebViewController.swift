@@ -21,7 +21,7 @@ final class VKWebViewController: UIViewController {
             static let queryItems = [
                 URLQueryItem(
                     name: "client_id",
-                    value: "51485802"
+                    value: "51490327"
                 ),
                 URLQueryItem(
                     name: "redirect_uri",
@@ -41,7 +41,7 @@ final class VKWebViewController: UIViewController {
                 ),
                 URLQueryItem(
                     name: "v",
-                    value: "5.68"
+                    value: "5.131"
                 )
             ]
         }
