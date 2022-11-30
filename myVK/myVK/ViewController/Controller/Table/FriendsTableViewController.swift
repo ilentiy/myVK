@@ -90,7 +90,8 @@ extension FriendsTableViewController {
     // MARK: - Private Methods
 
     private func addNotificationToken(result: Results<User>) {
-        notificationToken = result.observe { (changes: RealmCollectionChange) in
+        notificationToken = result.observe { [weak self] (changes: RealmCollectionChange) in
+            guard let self = self else { return }
             switch changes {
             case .initial:
                 break
@@ -99,7 +100,7 @@ extension FriendsTableViewController {
                 self.alphabetSort()
                 self.tableView.reloadData()
             case let .error(error):
-                fatalError("\(error)")
+                print(error.localizedDescription)
             }
         }
     }

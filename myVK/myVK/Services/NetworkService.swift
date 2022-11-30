@@ -147,7 +147,6 @@ final class NetworkService {
     private func request(_ method: ApiMethod, completion: @escaping (Data?) -> Void) {
         let urlPath = "\(Constants.baseURL)\(method.path)"
         let parametrs = method.parametrs.merging(Constants.baseParameters) { _, _ in }
-        print(parametrs)
         AF.request(urlPath, parameters: parametrs).responseData { response in
             if let data = response.data {
                 completion(data)

@@ -56,7 +56,8 @@ extension UserGroupsTableViewController {
     // MARK: - Private Methods
 
     private func addNotificationToken(result: Results<Group>) {
-        notificationToken = result.observe { (changes: RealmCollectionChange) in
+        notificationToken = result.observe { [weak self] (changes: RealmCollectionChange) in
+            guard let self = self else { return }
             switch changes {
             case .initial:
                 break
@@ -64,7 +65,7 @@ extension UserGroupsTableViewController {
                 self.myGroups = result
                 self.tableView.reloadData()
             case let .error(error):
-                fatalError("\(error)")
+                print(error.localizedDescription)
             }
         }
     }
@@ -87,7 +88,6 @@ extension UserGroupsTableViewController {
 
     private func networkFetchUserGroup() {
         networkService.fetchUserGroups { [weak self] result in
-            guard let self = self else { return }
             switch result {
             case let .success:
                 break
