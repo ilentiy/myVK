@@ -10,7 +10,7 @@ final class AllGroupsTableViewController: UITableViewController {
     private let searchBar = UISearchBar()
 
     // MARK: - Private Properties
-
+    
     private let networkService = NetworkService()
     private var searchedGroups: [Group] = []
 

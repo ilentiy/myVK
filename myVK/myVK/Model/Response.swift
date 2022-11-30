@@ -6,18 +6,12 @@ import RealmSwift
 
 /// Ответ от сервера
 struct Response<T: Decodable>: Decodable {
-    // MARK: - Public Properties
-
     let items: [T]
-
-    // MARK: - Coding Keys
 
     enum CodingKeys: String, CodingKey {
         case response
         case items
     }
-
-    // MARK: - Init
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
