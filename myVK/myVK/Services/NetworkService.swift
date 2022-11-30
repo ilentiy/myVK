@@ -79,8 +79,6 @@ final class NetworkService {
         }
     }
 
-    let realmService = RealmService()
-
     // MARK: - Public Method
 
     static func fetchPhotoData(url: String) -> Data {
@@ -95,7 +93,7 @@ final class NetworkService {
             guard let data = data else { return }
             do {
                 let response = try JSONDecoder().decode(Response<User>.self, from: data)
-                self.realmService.saveData(response.items)
+                RealmService.defaultRealmService.saveData(response.items)
                 completion(.success(response.items))
             } catch {
                 completion(.failure(error))
@@ -108,7 +106,7 @@ final class NetworkService {
             guard let data = data else { return }
             do {
                 let response = try JSONDecoder().decode(Response<Photo>.self, from: data)
-                self.realmService.saveData(response.items)
+                RealmService.defaultRealmService.saveData(response.items)
                 completion(.success(response.items))
             } catch {
                 completion(.failure(error))
@@ -121,7 +119,7 @@ final class NetworkService {
             guard let data = data else { return }
             do {
                 let response = try JSONDecoder().decode(Response<Group>.self, from: data)
-                self.realmService.saveData(response.items)
+                RealmService.defaultRealmService.saveData(response.items)
                 completion(.success(response.items))
             } catch {
                 completion(.failure(error))
@@ -134,7 +132,7 @@ final class NetworkService {
             guard let data = data else { return }
             do {
                 let response = try JSONDecoder().decode(Response<Group>.self, from: data)
-                self.realmService.saveData(response.items)
+                RealmService.defaultRealmService.saveData(response.items)
                 completion(.success(response.items))
             } catch {
                 completion(.failure(error))

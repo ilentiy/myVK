@@ -9,7 +9,6 @@ final class FriendsTableViewController: UITableViewController {
     // MARK: Private Properties
 
     private let interactiveTransition = InteractiveTransition()
-    private let realmService = RealmService()
     private let networkService = NetworkService()
     private var users: Results<User>?
     private var sectionsMap: [Character: [User]] = [:]
@@ -106,20 +105,15 @@ extension FriendsTableViewController {
     }
 
     private func loadRealmData() {
-        do {
-            let realm = try Realm()
-            let items = realm.objects(User.self)
-            addNotificationToken(result: items)
-            if !items.isEmpty {
-                users = items
-            } else {
-                networkFetchFriends()
-            }
-            alphabetSort()
-            tableView.reloadData()
-        } catch {
-            print(error)
+        guard let items = RealmService.defaultRealmService.readData(type: User.self) else { return }
+        addNotificationToken(result: items)
+        if !items.isEmpty {
+            users = items
+        } else {
+            networkFetchFriends()
         }
+        alphabetSort()
+        tableView.reloadData()
     }
 
     private func networkFetchFriends() {

@@ -71,17 +71,12 @@ extension UserGroupsTableViewController {
     }
 
     private func loadRealmData() {
-        do {
-            let realm = try Realm()
-            let items = realm.objects(Group.self)
-            addNotificationToken(result: items)
-            if !items.isEmpty {
-                myGroups = items
-            } else {
-                networkFetchUserGroup()
-            }
-        } catch {
-            print(error)
+        guard let items = RealmService.defaultRealmService.readData(type: Group.self) else { return }
+        addNotificationToken(result: items)
+        if !items.isEmpty {
+            myGroups = items
+        } else {
+            networkFetchUserGroup()
         }
         tableView.reloadData()
     }
