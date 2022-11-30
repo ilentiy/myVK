@@ -6,10 +6,14 @@ import RealmSwift
 
 /// Данные пользователя
 final class User: Object, Codable {
+    // MARK: - Public Properties
+
     @Persisted(primaryKey: true) var id: Int
     @Persisted var avatar: String
     @Persisted var firstName: String
     @Persisted var lastName: String
+
+    // MARK: - Coding Keys
 
     enum CodingKeys: String, CodingKey {
         case id
