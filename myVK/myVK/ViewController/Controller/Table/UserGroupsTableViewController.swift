@@ -16,7 +16,7 @@ final class UserGroupsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadRealmData()
+        loadData()
     }
 }
 
@@ -65,12 +65,12 @@ extension UserGroupsTableViewController {
                 self.myGroups = result
                 self.tableView.reloadData()
             case let .error(error):
-                print(error.localizedDescription)
+                self.showAlertController(alertTitle: nil, message: error.localizedDescription, actionTitle: nil)
             }
         }
     }
 
-    private func loadRealmData() {
+    private func loadData() {
         guard let items = RealmService.defaultRealmService.readData(type: Group.self) else { return }
         addNotificationToken(result: items)
         if !items.isEmpty {
@@ -82,12 +82,13 @@ extension UserGroupsTableViewController {
     }
 
     private func networkFetchUserGroup() {
-        networkService.fetchUserGroups { result in
+        networkService.fetchUserGroups { [weak self] result in
+            guard let self = self else { return }
             switch result {
-            case .success:
-                break
+            case let .success(items):
+                RealmService.defaultRealmService.saveData(items)
             case let .failure(error):
-                print(error.localizedDescription)
+                self.showAlertController(alertTitle: nil, message: error.localizedDescription, actionTitle: nil)
             }
         }
     }

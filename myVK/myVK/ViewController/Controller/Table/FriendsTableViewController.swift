@@ -19,7 +19,7 @@ final class FriendsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadRealmData()
+        loadData()
     }
 
     // MARK: - Public Methods
@@ -104,7 +104,7 @@ extension FriendsTableViewController {
         }
     }
 
-    private func loadRealmData() {
+    private func loadData() {
         guard let items = RealmService.defaultRealmService.readData(type: User.self) else { return }
         addNotificationToken(result: items)
         if !items.isEmpty {
@@ -117,12 +117,13 @@ extension FriendsTableViewController {
     }
 
     private func networkFetchFriends() {
-        networkService.fetchFriends { result in
+        networkService.fetchFriends { [weak self] result in
+            guard let self = self else { return }
             switch result {
-            case .success:
-                break
+            case let .success(items):
+                RealmService.defaultRealmService.saveData(items)
             case let .failure(error):
-                print(error.localizedDescription)
+                self.showAlertController(alertTitle: nil, message: error.localizedDescription, actionTitle: nil)
             }
         }
     }

@@ -20,9 +20,9 @@ final class RealmService {
         var items: Results<T>?
         do {
             let realm = try Realm()
-            items = realm.objects(T.self)
+            items = realm.objects(type)
         } catch {
-            print(error)
+            print(error.localizedDescription)
         }
         return items
     }
@@ -35,7 +35,7 @@ final class RealmService {
             realm.add(newItems, update: .modified)
             try realm.commitWrite()
         } catch {
-            print(error)
+            print(error.localizedDescription)
         }
     }
 }

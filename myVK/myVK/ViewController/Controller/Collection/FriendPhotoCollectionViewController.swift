@@ -50,7 +50,7 @@ final class FriendPhotoCollectionViewController: UICollectionViewController {
 
     private func configureUI() {
         title = fullName
-        loadRealmData(ownerID: user?.id ?? 0)
+        loadData(ownerID: user?.id ?? 0)
     }
 }
 
@@ -95,12 +95,12 @@ extension FriendPhotoCollectionViewController {
                 self.photos = result
                 self.collectionView.reloadData()
             case let .error(error):
-                print(error.localizedDescription)
+                self.showAlertController(alertTitle: nil, message: error.localizedDescription, actionTitle: nil)
             }
         }
     }
 
-    private func loadRealmData(ownerID: Int) {
+    private func loadData(ownerID: Int) {
         guard let items = RealmService.defaultRealmService.readData(type: Photo.self)?.where({ $0.ownerID == ownerID })
         else { return }
         addNotificationToken(result: items)
@@ -113,12 +113,13 @@ extension FriendPhotoCollectionViewController {
     }
 
     private func networkFetchPhotos(ownerID: Int) {
-        networkService.fetchPhotos(ownerID: ownerID) { result in
+        networkService.fetchPhotos(ownerID: ownerID) { [weak self] result in
+            guard let self = self else { return }
             switch result {
-            case .success:
-                break
+            case let .success(items):
+                RealmService.defaultRealmService.saveData(items)
             case let .failure(error):
-                print(error.localizedDescription)
+                self.showAlertController(alertTitle: nil, message: error.localizedDescription, actionTitle: nil)
             }
         }
     }
