@@ -8,11 +8,11 @@ import RealmSwift
 final class Photo: Object, Codable {
     @Persisted(primaryKey: true) var id: Int
     @Persisted var ownerID: Int
-    @Persisted var photoUrl: List<PhotoUrl>
+    @Persisted var photoUrls: List<PhotoUrl>
 
     enum CodingKeys: String, CodingKey {
         case id
         case ownerID = "owner_id"
-        case photoUrl = "sizes"
+        case photoUrls = "sizes"
     }
 }

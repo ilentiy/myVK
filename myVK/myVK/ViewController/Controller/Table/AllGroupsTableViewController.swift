@@ -10,9 +10,9 @@ final class AllGroupsTableViewController: UITableViewController {
     private let searchBar = UISearchBar()
 
     // MARK: - Private Properties
-
-    private var searchedGroups: [Group] = []
+    
     private let networkService = NetworkService()
+    private var searchedGroups: [Group] = []
 
     // MARK: - LifeCycle
 

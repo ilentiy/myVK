@@ -8,8 +8,8 @@ import UIKit
 final class UserGroupsTableViewController: UITableViewController {
     // MARK: - Private Properties
 
-    private var myGroups: Results<Group>?
     private let networkService = NetworkService()
+    private var myGroups: Results<Group>?
     private var notificationToken: NotificationToken?
 
     // MARK: - LifeCycle
@@ -87,9 +87,9 @@ extension UserGroupsTableViewController {
     }
 
     private func networkFetchUserGroup() {
-        networkService.fetchUserGroups { [weak self] result in
+        networkService.fetchUserGroups { result in
             switch result {
-            case let .success:
+            case .success:
                 break
             case let .failure(error):
                 print(error.localizedDescription)
