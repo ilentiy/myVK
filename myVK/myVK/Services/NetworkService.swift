@@ -15,6 +15,7 @@ final class NetworkService {
         static let getPhotosPath = "photos.getAll"
         static let getUserGroupPath = "groups.get"
         static let getGroupPath = "groups.search"
+        static let getNews = "newsfeed.get"
 
         enum ParametersKey {
             static let userID = "user_ids"
@@ -45,6 +46,7 @@ final class NetworkService {
         case getPhotoAll(ownerID: Int)
         case getGroups
         case getSearchedGroups(query: String)
+        case getNews
 
         var path: String {
             switch self {
@@ -56,6 +58,8 @@ final class NetworkService {
                 return Constants.getUserGroupPath
             case .getSearchedGroups:
                 return Constants.getGroupPath
+            case .getNews:
+                return Constants.getNews
             }
         }
 
@@ -75,6 +79,8 @@ final class NetworkService {
                 ]
             case let .getSearchedGroups(query):
                 return [Constants.ParametersKey.query: query]
+            case .getNews:
+                return [Constants.ParametersKey.fields: ""]
             }
         }
     }
@@ -102,6 +108,20 @@ final class NetworkService {
 
     func fetchGroup(query: String, completion: @escaping (Result<[Group], Error>) -> Void) {
         fetchData(.getSearchedGroups(query: query), completion: completion)
+    }
+
+    func fetchNews(completion: @escaping (Result<NewsResponse, Error>) -> Void) {
+        let urlPath = "\(Constants.baseURL)\(ApiMethod.getNews.path)"
+        let parametrs = ApiMethod.getNews.parametrs.merging(Constants.baseParameters) { _, _ in }
+        AF.request(urlPath, parameters: parametrs).responseData { response in
+            guard let data = response.data else { return }
+            do {
+                let response = try JSONDecoder().decode(NewsResponse.self, from: data)
+                completion(.success(response))
+            } catch {
+                completion(.failure(error))
+            }
+        }
     }
 
     // MARK: - Private Methods

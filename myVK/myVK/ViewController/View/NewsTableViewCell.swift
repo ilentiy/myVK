@@ -10,6 +10,5 @@ final class NewsTableViewCell: UITableViewCell {
     @IBOutlet private var avatarImageView: UIImageView!
     @IBOutlet private var nameLabel: UILabel!
     @IBOutlet private var newsDataLabel: UILabel!
-    @IBOutlet private var newsTextLabel: UILabel!
     @IBOutlet private var postImageView: UIImageView!
 }
