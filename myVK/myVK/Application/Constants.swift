@@ -16,7 +16,10 @@ enum Constants {
             static let friend = "Friends"
             static let groups = "Groups"
             static let collection = "Photo"
-            static let news = "News"
+            static let newsHeader = "NewsHeader"
+            static let newsPost = "NewsPost"
+            static let newsImage = "NewsImage"
+            static let newsFooter = "NewsFooter"
         }
     }
 

@@ -30,14 +30,20 @@ final class LikeControl: UIControl {
             likeButton.setImage(UIImage(systemName: Constants.heartFill), for: .normal)
             likeAnimate()
             isLiked = true
+            likeNumberLabel.text = "\(likesCount + 1)"
         } else {
-            likeNumberLabel.text = String(likesCount + 0)
+            likeNumberLabel.text = "\(likesCount)"
             likeNumberLabel.textColor = .systemGray
             likeButton.setImage(UIImage(systemName: Constants.heart), for: .normal)
             likeButton.tintColor = .systemGray
             likeView?.backgroundColor = .systemGray.withAlphaComponent(0.75)
             isLiked = false
         }
+    }
+
+    func configure(item: News) {
+        likesCount = item.likes?.count ?? 0
+        likeNumberLabel.text = "\(likesCount)"
     }
 
     private func likeAnimate() {

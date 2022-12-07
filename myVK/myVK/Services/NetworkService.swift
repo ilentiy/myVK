@@ -15,11 +15,13 @@ final class NetworkService {
         static let getPhotosPath = "photos.getAll"
         static let getUserGroupPath = "groups.get"
         static let getGroupPath = "groups.search"
+        static let getNewsFeedPath = "newsfeed.get"
 
         enum ParametersKey {
             static let userID = "user_ids"
             static let token = "access_token"
             static let fields = "fields"
+            static let filters = "filters"
             static let version = "v"
             static let ownerID = "owner_id"
             static let extended = "extended"
@@ -30,6 +32,7 @@ final class NetworkService {
             static let userID = Session.shared.userID
             static let token = Session.shared.token
             static let fields = "photo_100"
+            static let filters = "post"
             static let extended = "1"
             static let version = "5.131"
         }
@@ -45,6 +48,7 @@ final class NetworkService {
         case getPhotoAll(ownerID: Int)
         case getGroups
         case getSearchedGroups(query: String)
+        case getNews
 
         var path: String {
             switch self {
@@ -56,6 +60,8 @@ final class NetworkService {
                 return Constants.getUserGroupPath
             case .getSearchedGroups:
                 return Constants.getGroupPath
+            case .getNews:
+                return Constants.getNewsFeedPath
             }
         }
 
@@ -75,6 +81,8 @@ final class NetworkService {
                 ]
             case let .getSearchedGroups(query):
                 return [Constants.ParametersKey.query: query]
+            case .getNews:
+                return [Constants.ParametersKey.filters: Constants.ParametersValue.filters]
             }
         }
     }
@@ -102,6 +110,20 @@ final class NetworkService {
 
     func fetchGroup(query: String, completion: @escaping (Result<[Group], Error>) -> Void) {
         fetchData(.getSearchedGroups(query: query), completion: completion)
+    }
+
+    func fetchNews(completion: @escaping (Result<NewsResponse, Error>) -> Void) {
+        let urlPath = "\(Constants.baseURL)\(ApiMethod.getNews.path)"
+        let parametrs = ApiMethod.getNews.parametrs.merging(Constants.baseParameters) { _, _ in }
+        AF.request(urlPath, parameters: parametrs).responseData { response in
+            guard let data = response.data else { return }
+            do {
+                let response = try JSONDecoder().decode(NewsResponse.self, from: data)
+                completion(.success(response))
+            } catch {
+                completion(.failure(error))
+            }
+        }
     }
 
     // MARK: - Private Methods

@@ -33,7 +33,7 @@ final class VKWebViewController: UIViewController {
                 ),
                 URLQueryItem(
                     name: "scope",
-                    value: "262150"
+                    value: "8198"
                 ),
                 URLQueryItem(
                     name: "response_type",

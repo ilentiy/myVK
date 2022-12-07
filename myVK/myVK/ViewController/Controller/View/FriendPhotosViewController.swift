@@ -97,7 +97,6 @@ final class FriendPhotosViewController: UIViewController {
         }
         guard let url = photos[currentPhotoIndex].photoUrls.last?.url else { return }
         photoImageView.load(url: url)
-
         title = "\(currentPhotoIndex + 1) \(Constants.from) \(photos.count)"
     }
 }

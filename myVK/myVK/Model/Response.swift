@@ -5,6 +5,7 @@ import Foundation
 import RealmSwift
 
 /// Ответ от сервера
+///  - items; получаемый объект
 struct Response<T: Decodable>: Decodable {
     let items: [T]
 
