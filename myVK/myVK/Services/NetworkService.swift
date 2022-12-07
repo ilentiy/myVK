@@ -15,12 +15,13 @@ final class NetworkService {
         static let getPhotosPath = "photos.getAll"
         static let getUserGroupPath = "groups.get"
         static let getGroupPath = "groups.search"
-        static let getNews = "newsfeed.get"
+        static let getNewsFeedPath = "newsfeed.get"
 
         enum ParametersKey {
             static let userID = "user_ids"
             static let token = "access_token"
             static let fields = "fields"
+            static let filters = "filters"
             static let version = "v"
             static let ownerID = "owner_id"
             static let extended = "extended"
@@ -31,6 +32,7 @@ final class NetworkService {
             static let userID = Session.shared.userID
             static let token = Session.shared.token
             static let fields = "photo_100"
+            static let filters = "post"
             static let extended = "1"
             static let version = "5.131"
         }
@@ -59,7 +61,7 @@ final class NetworkService {
             case .getSearchedGroups:
                 return Constants.getGroupPath
             case .getNews:
-                return Constants.getNews
+                return Constants.getNewsFeedPath
             }
         }
 
@@ -80,7 +82,7 @@ final class NetworkService {
             case let .getSearchedGroups(query):
                 return [Constants.ParametersKey.query: query]
             case .getNews:
-                return [Constants.ParametersKey.fields: ""]
+                return [Constants.ParametersKey.filters: Constants.ParametersValue.filters]
             }
         }
     }

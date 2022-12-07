@@ -4,10 +4,10 @@
 import UIKit
 
 /// Ячейка с действиями к посту лайк поделиться комент
-class NewsFooterTableViewCell: NewsCell {
+final class NewsFooterTableViewCell: NewsCell {
     // MARK: - Private IBOutlet
 
-    @IBOutlet var viewsCountLabel: UILabel!
+    @IBOutlet private var viewsCountLabel: UILabel!
 
     @IBOutlet private var likeControl: LikeControl!
 

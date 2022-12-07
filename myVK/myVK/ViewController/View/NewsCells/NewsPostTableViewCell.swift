@@ -4,7 +4,7 @@
 import UIKit
 
 /// Ячейка С текстом поста
-class NewsPostTableViewCell: NewsCell {
+final class NewsPostTableViewCell: NewsCell {
     // MARK: - Private IBOutlet
 
     @IBOutlet private var newsTextLabel: UILabel!

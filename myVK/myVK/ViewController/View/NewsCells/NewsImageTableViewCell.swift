@@ -4,7 +4,7 @@
 import UIKit
 
 /// Ячейка с картинкой поста
-class NewsImageTableViewCell: NewsCell {
+final class NewsImageTableViewCell: NewsCell {
     // MARK: - Private IBOutlet
 
     @IBOutlet private var postImageView: UIImageView!

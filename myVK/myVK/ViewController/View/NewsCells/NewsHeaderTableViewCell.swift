@@ -4,7 +4,7 @@
 import UIKit
 
 /// Ячейка с заголовком поста
-class NewsHeaderTableViewCell: NewsCell {
+final class NewsHeaderTableViewCell: NewsCell {
     // MARK: - Private IBOutlet
 
     @IBOutlet private var avatarImageView: UIImageView!
