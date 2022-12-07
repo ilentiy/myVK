@@ -6,16 +6,16 @@ import UIKit
 /// Расширение для создания AlertController
 extension UIViewController {
     func showAlertController(alertTitle: String?, message: String?, actionTitle: String?) {
-        let loginErrorAlertController = UIAlertController(
+        let errorAlertController = UIAlertController(
             title: alertTitle,
             message: message,
             preferredStyle: .alert
         )
-        let okLoginErrorAlertControllerAction = UIAlertAction(
+        let okErrorAlertControllerAction = UIAlertAction(
             title: actionTitle,
             style: .cancel
         )
-        loginErrorAlertController.addAction(okLoginErrorAlertControllerAction)
-        present(loginErrorAlertController, animated: true)
+        errorAlertController.addAction(okErrorAlertControllerAction)
+        present(errorAlertController, animated: true)
     }
 }

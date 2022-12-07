@@ -11,8 +11,8 @@ final class AllGroupsTableViewController: UITableViewController {
 
     // MARK: - Private Properties
 
-    private var searchedGroups: [Group] = []
     private let networkService = NetworkService()
+    private var searchedGroups: [Group] = []
 
     // MARK: - LifeCycle
 
@@ -73,10 +73,15 @@ extension AllGroupsTableViewController {
     // MARK: - Private Methods
 
     private func networkFetchGroup(searchText: String) {
-        networkService.fetchGroup(query: searchText) { [weak self] groups in
+        networkService.fetchGroup(query: searchText) { [weak self] result in
             guard let self = self else { return }
-            self.searchedGroups = groups
-            self.tableView.reloadData()
+            switch result {
+            case let .success(groups):
+                self.searchedGroups = groups
+                self.tableView.reloadData()
+            case let .failure(error):
+                print(error.localizedDescription)
+            }
         }
     }
 }

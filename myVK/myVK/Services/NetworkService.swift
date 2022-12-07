@@ -88,62 +88,34 @@ final class NetworkService {
         return data
     }
 
-    func fetchFriends(completion: @escaping ([User]) -> Void) {
-        request(.getFriends) { data in
-            guard let data = data else { return }
-            do {
-                let response = try JSONDecoder().decode(Response<User>.self, from: data)
-                completion(response.items)
-            } catch {
-                completion([])
-            }
-        }
+    func fetchFriends(completion: @escaping (Result<[User], Error>) -> Void) {
+        fetchData(.getFriends, completion: completion)
     }
 
-    func fetchPhotos(ownerID: Int, completion: @escaping ([Photo]) -> Void) {
-        request(.getPhotoAll(ownerID: ownerID)) { data in
-            guard let data = data else { return }
-            do {
-                let response = try JSONDecoder().decode(Response<Photo>.self, from: data)
-                completion(response.items)
-            } catch {
-                completion([])
-            }
-        }
+    func fetchPhotos(ownerID: Int, completion: @escaping (Result<[Photo], Error>) -> Void) {
+        fetchData(.getPhotoAll(ownerID: ownerID), completion: completion)
     }
 
-    func fetchUserGroups(completion: @escaping ([Group]) -> Void) {
-        request(.getGroups) { data in
-            guard let data = data else { return }
-            do {
-                let response = try JSONDecoder().decode(Response<Group>.self, from: data)
-                completion(response.items)
-            } catch {
-                completion([])
-            }
-        }
+    func fetchUserGroups(completion: @escaping (Result<[Group], Error>) -> Void) {
+        fetchData(.getGroups, completion: completion)
     }
 
-    func fetchGroup(query: String, completion: @escaping ([Group]) -> Void) {
-        request(.getSearchedGroups(query: query)) { data in
-            guard let data = data else { return }
-            do {
-                let response = try JSONDecoder().decode(Response<Group>.self, from: data)
-                completion(response.items)
-            } catch {
-                completion([])
-            }
-        }
+    func fetchGroup(query: String, completion: @escaping (Result<[Group], Error>) -> Void) {
+        fetchData(.getSearchedGroups(query: query), completion: completion)
     }
 
     // MARK: - Private Methods
 
-    private func request(_ method: ApiMethod, completion: @escaping (Data?) -> Void) {
+    private func fetchData<T: Decodable>(_ method: ApiMethod, completion: @escaping (Result<[T], Error>) -> Void) {
         let urlPath = "\(Constants.baseURL)\(method.path)"
         let parametrs = method.parametrs.merging(Constants.baseParameters) { _, _ in }
         AF.request(urlPath, parameters: parametrs).responseData { response in
-            if let data = response.data {
-                completion(data)
+            guard let data = response.data else { return }
+            do {
+                let response = try JSONDecoder().decode(Response<T>.self, from: data)
+                completion(.success(response.items))
+            } catch {
+                completion(.failure(error))
             }
         }
     }
