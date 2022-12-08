@@ -1,12 +1,13 @@
-// NetworkService.swift
+// PromiseNetworkService.swift
 // Copyright © RoadMap. All rights reserved.
 
 import Alamofire
 import Foundation
+import PromiseKit
 import RealmSwift
 
 ///  Сетевой слой
-final class NetworkService {
+final class PromiseNetworkService {
     // MARK: - Constants
 
     private enum Constants {
@@ -96,34 +97,37 @@ final class NetworkService {
         return data
     }
 
-    func fetchFriends(completion: @escaping (Result<[User], Error>) -> Void) {
-        fetchData(.getFriends, completion: completion)
+    func fetchFriends() -> Promise<[User]> {
+        fetchData(.getFriends)
     }
 
-    func fetchPhotos(ownerID: Int, completion: @escaping (Result<[Photo], Error>) -> Void) {
-        fetchData(.getPhotoAll(ownerID: ownerID), completion: completion)
+    func fetchPhotos(ownerID: Int) -> Promise<[Photo]> {
+        fetchData(.getPhotoAll(ownerID: ownerID))
     }
 
-    func fetchUserGroups(completion: @escaping (Result<[Group], Error>) -> Void) {
-        fetchData(.getGroups, completion: completion)
+    func fetchUserGroups() -> Promise<[Group]> {
+        fetchData(.getGroups)
     }
 
-    func fetchGroup(query: String, completion: @escaping (Result<[Group], Error>) -> Void) {
-        fetchData(.getSearchedGroups(query: query), completion: completion)
+    func fetchGroup(query: String) -> Promise<[Group]> {
+        fetchData(.getSearchedGroups(query: query))
     }
 
-    func fetchNews(completion: @escaping (Result<NewsResponse, Error>) -> Void) {
+    func fetchNews() -> Promise<NewsResponse> {
         let urlPath = "\(Constants.baseURL)\(ApiMethod.getNews.path)"
         let parametrs = ApiMethod.getNews.parametrs.merging(Constants.baseParameters) { _, _ in }
-        AF.request(urlPath, parameters: parametrs).responseData { response in
-            guard let data = response.data else { return }
-            do {
-                let response = try JSONDecoder().decode(NewsResponse.self, from: data)
-                completion(.success(response))
-            } catch {
-                completion(.failure(error))
+        let promise = Promise<NewsResponse> { resolver in
+            AF.request(urlPath, parameters: parametrs).responseData { response in
+                guard let data = response.data else { return }
+                do {
+                    let response = try JSONDecoder().decode(NewsResponse.self, from: data)
+                    resolver.fulfill(response.self)
+                } catch {
+                    resolver.reject(error)
+                }
             }
         }
+        return promise
     }
 
     func getRequest(_ method: ApiMethod) -> DataRequest {
@@ -152,17 +156,20 @@ final class NetworkService {
         }
     }
 
-    private func fetchData<T: Decodable>(_ method: ApiMethod, completion: @escaping (Result<[T], Error>) -> Void) {
+    private func fetchData<T: Decodable>(_ method: ApiMethod) -> Promise<[T]> {
         let urlPath = "\(Constants.baseURL)\(method.path)"
         let parametrs = method.parametrs.merging(Constants.baseParameters) { _, _ in }
-        AF.request(urlPath, parameters: parametrs).responseData { response in
-            guard let data = response.data else { return }
-            do {
-                let response = try JSONDecoder().decode(Response<T>.self, from: data)
-                completion(.success(response.items))
-            } catch {
-                completion(.failure(error))
+        let promise = Promise<[T]> { resolver in
+            AF.request(urlPath, parameters: parametrs).responseData { response in
+                guard let data = response.data else { return }
+                do {
+                    let response = try JSONDecoder().decode(Response<T>.self, from: data)
+                    resolver.fulfill(response.items)
+                } catch {
+                    resolver.reject(error)
+                }
             }
         }
+        return promise
     }
 }

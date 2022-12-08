@@ -17,7 +17,7 @@ enum PostTypeEnum: String, Codable {
 ///     - text: текст поста
 ///     - likes: лайки
 ///     - views: просмотры
-class News: Codable {
+final class News: Codable {
     let sourceID: Int
     let date: Int
     let postType: PostTypeEnum?

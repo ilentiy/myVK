@@ -8,4 +8,5 @@ target 'myVK' do
   # Pods for myVK
   pod 'Alamofire'
   pod 'RealmSwift'
+  pod 'PromiseKit'
 end
