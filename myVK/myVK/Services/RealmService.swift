@@ -21,7 +21,6 @@ final class RealmService {
         do {
             let realm = try Realm()
             items = realm.objects(type)
-            print(realm.configuration.fileURL)
         } catch {
             print(error.localizedDescription)
         }

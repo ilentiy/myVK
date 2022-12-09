@@ -5,7 +5,7 @@ import UIKit
 
 /// Операция передачи данных в контроллер
 class RealmSaveDataOperation: Operation {
-    // MARK: - Private Properties
+    // MARK: - Public Properties
 
     override func main() {
         guard let parseData = dependencies.first as? ParseDataOperation else { return }
