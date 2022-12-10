@@ -4,7 +4,7 @@
 import UIKit
 
 /// Операция передачи данных в контроллер
-class RealmSaveDataOperation: Operation {
+final class RealmSaveDataOperation: Operation {
     // MARK: - Public Methods
 
     override func main() {

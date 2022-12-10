@@ -5,15 +5,17 @@ import Foundation
 import RealmSwift
 
 /// Данные пользователя
-/// - Properies
-///     - id: идентификатор пользователя
-///     - firstName: имя
-///     - lastName: фамилия
-///     - avatar: название аватара пользователя
 final class User: Object, Codable {
+    /// Идентификатор пользователя
     @Persisted(primaryKey: true) var id: Int
+
+    /// Название аватара пользователя
     @Persisted var avatar: String
+
+    /// Имя
     @Persisted var firstName: String
+
+    /// Фамилия
     @Persisted var lastName: String
 
     enum CodingKeys: String, CodingKey {

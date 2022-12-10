@@ -4,8 +4,7 @@
 import Foundation
 
 /// Лайки
-/// - Properties
-///     - count: количество лайков
 struct Likes: Codable {
+    /// Количествой лайков
     var count: Int
 }

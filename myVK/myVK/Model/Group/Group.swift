@@ -5,15 +5,14 @@ import Foundation
 import RealmSwift
 
 /// Данные группы
-/// - Properies
-///     - id: идентификатор группы
-///     - name: название группы
-///     - screenName: экранное имя
-///     - avatar: название аватара группы
 final class Group: Object, Codable {
+    /// Идетнификатор группы
     @Persisted(primaryKey: true) var id: Int
+    /// Название группы
     @Persisted var name: String
+    /// Экранное имя
     @Persisted var screenName: String
+    /// путь к аватару группы
     @Persisted var avatar: String
 
     enum CodingKeys: String, CodingKey {

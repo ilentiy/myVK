@@ -4,7 +4,7 @@
 import Foundation
 
 /// Операция парсинга
-class ParseDataOperation: Operation {
+final class ParseDataOperation: Operation {
     // MARK: - Public Properties
 
     var outputData: [Group] = []

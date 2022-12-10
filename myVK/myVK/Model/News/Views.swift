@@ -4,8 +4,7 @@
 import Foundation
 
 /// Просмотры
-///     - Properties
-///         - count: количество просмотров
 struct Views: Codable {
+    /// Количество просмотров
     var count: Int
 }

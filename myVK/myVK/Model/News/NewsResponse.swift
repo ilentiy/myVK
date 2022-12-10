@@ -4,13 +4,12 @@
 import Foundation
 
 /// Ответ от сервера
-/// - Properties
-///     - news: список новостей
-///     - users: список пользователей в ленте новостей
-///     - groups: список групп в ленте новостей
 struct NewsResponse: Decodable {
+    /// Список новостей
     let news: [News]
+    /// Список пользователей в ленте новостей
     let users: [User]
+    /// Список групп в списке новостей
     let groups: [Group]
 
     enum CodingKeys: String, CodingKey {

@@ -5,7 +5,7 @@ import Foundation
 
 /// Содержит логику для асинхронных операций
 class AsyncOperation: Operation {
-    // MARK: -  Public Enum
+    // MARK: - Public Enum
 
     enum State: String {
         case ready
@@ -18,24 +18,27 @@ class AsyncOperation: Operation {
 
     // MARK: - Public Properties
 
-    var state = State.ready { willSet {
-        willChangeValue(forKey: state.keyPath)
-        willChangeValue(forKey: newValue.keyPath)
-    }
-    didSet {
-        didChangeValue(forKey: state.keyPath)
-        didChangeValue(forKey: oldValue.keyPath)
-    }
+    var state = State.ready {
+        willSet {
+            willChangeValue(forKey: state.keyPath)
+            willChangeValue(forKey: newValue.keyPath)
+        }
+        didSet {
+            didChangeValue(forKey: state.keyPath)
+            didChangeValue(forKey: oldValue.keyPath)
+        }
     }
 
-    override var isAsynchronous: Bool { true
+    override var isAsynchronous: Bool {
+        true
     }
 
     override var isReady: Bool {
         super.isReady && state == .ready
     }
 
-    override var isExecuting: Bool { state == .executing
+    override var isExecuting: Bool {
+        state == .executing
     }
 
     override var isFinished: Bool {
@@ -44,12 +47,13 @@ class AsyncOperation: Operation {
 
     // MARK: - Public Methods
 
-    override func start() { if isCancelled {
-        state = .finished
-    } else {
-        main()
-        state = .executing
-    }
+    override func start() {
+        if isCancelled {
+            state = .finished
+        } else {
+            main()
+            state = .executing
+        }
     }
 
     override func cancel() {
