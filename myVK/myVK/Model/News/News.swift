@@ -10,22 +10,29 @@ enum PostTypeEnum: String, Codable {
 }
 
 /// Элемент списка новостей
-///  - Properties
-///     - sourceID: айди источника поста (группа/пользователь)
-///     - date: дата поста
-///     - postType: тип поста
-///     - text: текст поста
-///     - likes: лайки
-///     - views: просмотры
-class News: Codable {
+final class News: Codable {
+    /// Айди источника поста (группа/пользователь)
     let sourceID: Int
+
+    /// Дата поста
     let date: Int
+
+    /// Тип поста
     let postType: PostTypeEnum?
+
+    /// Текст поста
     let text: String?
+
+    /// Лайки
     let likes: Likes?
+
+    /// Просмотры
     let views: Views?
 
+    /// Путь аватара пользователя/группы
     var avatar: String?
+
+    /// Имя пользователя/группы
     var name: String?
 
     enum CodingKeys: String, CodingKey {

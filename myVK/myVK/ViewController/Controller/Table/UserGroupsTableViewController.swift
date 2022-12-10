@@ -72,24 +72,29 @@ extension UserGroupsTableViewController {
 
     private func loadData() {
         guard let items = RealmService.defaultRealmService.readData(type: Group.self) else { return }
+
         addNotificationToken(result: items)
         if !items.isEmpty {
             myGroups = items
         } else {
-            networkFetchUserGroup()
+            fetchGroupsOperationQueue()
         }
         tableView.reloadData()
     }
 
-    private func networkFetchUserGroup() {
-        networkService.fetchUserGroups { [weak self] result in
-            guard let self = self else { return }
-            switch result {
-            case let .success(items):
-                RealmService.defaultRealmService.saveData(items)
-            case let .failure(error):
-                self.showAlertController(alertTitle: nil, message: error.localizedDescription, actionTitle: nil)
-            }
-        }
+    private func fetchGroupsOperationQueue() {
+        let operationQueue = OperationQueue()
+        let request = networkService.getRequest(.getGroups)
+        let getDataOperation = GetDataOperation(request: request)
+        let parseDataOperation = ParseDataOperation()
+        let saveDataOperation = RealmSaveDataOperation()
+
+        operationQueue.addOperation(getDataOperation)
+        parseDataOperation.addDependency(getDataOperation)
+
+        operationQueue.addOperation(parseDataOperation)
+        saveDataOperation.addDependency(parseDataOperation)
+
+        OperationQueue.main.addOperation(saveDataOperation)
     }
 }

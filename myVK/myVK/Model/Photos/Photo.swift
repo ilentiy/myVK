@@ -6,8 +6,11 @@ import RealmSwift
 
 /// Данные фото
 final class Photo: Object, Codable {
+    /// Идентификатор фото
     @Persisted(primaryKey: true) var id: Int
+    /// Идентификатор владельца фото
     @Persisted var ownerID: Int
+    /// Список путей к фото
     @Persisted var photoUrls: List<PhotoUrl>
 
     enum CodingKeys: String, CodingKey {

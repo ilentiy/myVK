@@ -5,8 +5,8 @@ import Foundation
 import RealmSwift
 
 /// Ответ от сервера
-///  - items; получаемый объект
 struct Response<T: Decodable>: Decodable {
+    /// получаемый объект
     let items: [T]
 
     enum CodingKeys: String, CodingKey {

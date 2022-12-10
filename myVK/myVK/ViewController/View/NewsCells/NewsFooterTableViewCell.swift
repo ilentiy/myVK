@@ -8,7 +8,6 @@ final class NewsFooterTableViewCell: NewsCell {
     // MARK: - Private IBOutlet
 
     @IBOutlet private var viewsCountLabel: UILabel!
-
     @IBOutlet private var likeControl: LikeControl!
 
     // MARK: Public Methods
