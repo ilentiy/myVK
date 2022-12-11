@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		091AED86293541DE00742D17 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091AED85293541DE00742D17 /* RealmService.swift */; };
 		091D272D2942947700258900 /* PromiseNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091D272C2942947700258900 /* PromiseNetworkService.swift */; };
+		091D272F2944AC4D00258900 /* PhotoCacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091D272E2944AC4D00258900 /* PhotoCacheService.swift */; };
 		0928241D291AF246004EF4D0 /* LoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0928241C291AF246004EF4D0 /* LoaderView.swift */; };
 		092D787C291A3920008B5816 /* NewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092D787B291A3920008B5816 /* NewsTableViewController.swift */; };
 		092D787E291A6C62008B5816 /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092D787D291A6C62008B5816 /* NewsTableViewCell.swift */; };
@@ -63,6 +64,7 @@
 		071BDC2862D2586F9C16954E /* Pods_myVK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_myVK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		091AED85293541DE00742D17 /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		091D272C2942947700258900 /* PromiseNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromiseNetworkService.swift; sourceTree = "<group>"; };
+		091D272E2944AC4D00258900 /* PhotoCacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCacheService.swift; sourceTree = "<group>"; };
 		0928241C291AF246004EF4D0 /* LoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderView.swift; sourceTree = "<group>"; };
 		092D787B291A3920008B5816 /* NewsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewController.swift; sourceTree = "<group>"; };
 		092D787D291A6C62008B5816 /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 				096130A0292D5D88006AF1AC /* NetworkService.swift */,
 				091D272C2942947700258900 /* PromiseNetworkService.swift */,
 				091AED85293541DE00742D17 /* RealmService.swift */,
+				091D272E2944AC4D00258900 /* PhotoCacheService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -553,6 +556,7 @@
 				09E670A7293E9F3900A97B39 /* NewsFooterTableViewCell.swift in Sources */,
 				096130A6292D649F006AF1AC /* VKWebViewController.swift in Sources */,
 				091D272D2942947700258900 /* PromiseNetworkService.swift in Sources */,
+				091D272F2944AC4D00258900 /* PhotoCacheService.swift in Sources */,
 				09B66A672911C15D00E7BA49 /* Constants.swift in Sources */,
 				09B66A5F2911BED100E7BA49 /* LogInViewController.swift in Sources */,
 				09939646293FEDD90056C92E /* NewsResponse.swift in Sources */,

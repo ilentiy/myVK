@@ -21,7 +21,7 @@ struct NewsResponse: Decodable {
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        var responseContainer = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .response)
+        let responseContainer = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .response)
         news = try responseContainer.decode([News].self, forKey: .news)
         users = try responseContainer.decode([User].self, forKey: .users)
         groups = try responseContainer.decode([Group].self, forKey: .groups)
