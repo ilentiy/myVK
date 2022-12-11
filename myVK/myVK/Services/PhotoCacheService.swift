@@ -1,7 +1,7 @@
 // PhotoCacheService.swift
 // Copyright © RoadMap. All rights reserved.
 
-import UIKit
+import Foundation
 
 /// Кеширование изображений
 final class PhotoCacheService {
@@ -9,9 +9,9 @@ final class PhotoCacheService {
 
     private enum Constants {
         static let folderName = "ImagesFromVK"
-        static let separator = "/"
+        static let separatorCharacter = "/"
         static let defaultString: Substring = "default"
-        static let png = ".png"
+        static let pngText = ".png"
         static let defaultImageName = "photo"
     }
 
