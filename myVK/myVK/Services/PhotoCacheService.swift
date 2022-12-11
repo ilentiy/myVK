@@ -1,7 +1,7 @@
 // PhotoCacheService.swift
 // Copyright © RoadMap. All rights reserved.
 
-import Foundation
+import UIKit
 
 /// Кеширование изображений
 final class PhotoCacheService {
@@ -58,8 +58,8 @@ final class PhotoCacheService {
 
     private func getImagePath(url: String) -> String? {
         guard let folderUrl = getCacheFolderPath() else { return nil }
-        let fileName = String(url.split(separator: Constants.separator).last ?? Constants.defaultString)
-        return folderUrl.appendingPathComponent(fileName + Constants.png).path
+        let fileName = String(url.split(separator: Constants.separatorCharacter).last ?? Constants.defaultString)
+        return folderUrl.appendingPathComponent(fileName + Constants.pngText).path
     }
 
     private func getImageDrive(url: String) -> UIImage? {
