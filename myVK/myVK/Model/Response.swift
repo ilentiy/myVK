@@ -6,7 +6,7 @@ import RealmSwift
 
 /// Ответ от сервера
 struct Response<T: Decodable>: Decodable {
-    /// получаемый объект
+    /// Получаемый объект
     let items: [T]
 
     enum CodingKeys: String, CodingKey {

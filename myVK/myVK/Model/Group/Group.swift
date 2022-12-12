@@ -12,7 +12,7 @@ final class Group: Object, Codable {
     @Persisted var name: String
     /// Экранное имя
     @Persisted var screenName: String
-    /// путь к аватару группы
+    /// Путь к аватару группы
     @Persisted var avatar: String
 
     enum CodingKeys: String, CodingKey {
