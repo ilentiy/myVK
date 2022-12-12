@@ -15,15 +15,15 @@
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController storyboardIdentifier="Login" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="LogInViewController" customModule="myVK" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="JVS-uR-3Dc">
+                    <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="JVS-uR-3Dc" customClass="LoginView" customModule="myVK" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2PB-Ut-6Ev">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="376" height="667"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" insetsLayoutMarginsFromSafeArea="NO" image="logoVk1" translatesAutoresizingMaskIntoConstraints="NO" id="Xf1-yx-7Bl">
-                                        <rect key="frame" x="137.5" y="50" width="100" height="100"/>
+                                        <rect key="frame" x="138" y="50" width="100" height="100"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="100" id="GCI-t0-GUU"/>
@@ -31,7 +31,7 @@
                                         </constraints>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gen-x2-Bei">
-                                        <rect key="frame" x="27" y="500" width="321.5" height="50"/>
+                                        <rect key="frame" x="27" y="500" width="322" height="50"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="R06-a8-dCK"/>
@@ -52,7 +52,7 @@
                                         </connections>
                                     </button>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Пароль" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hO9-S7-WRN">
-                                        <rect key="frame" x="20" y="350" width="335.5" height="40"/>
+                                        <rect key="frame" x="20" y="350" width="336" height="40"/>
                                         <color key="backgroundColor" name="SignInTextField"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -72,7 +72,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email или телефон" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AxI-36-t5G">
-                                        <rect key="frame" x="20" y="290" width="335.5" height="40"/>
+                                        <rect key="frame" x="20" y="290" width="336" height="40"/>
                                         <color key="backgroundColor" name="SignInTextField"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -103,7 +103,7 @@
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dqt-2l-Iuu">
-                                        <rect key="frame" x="100" y="607" width="174.5" height="30"/>
+                                        <rect key="frame" x="100" y="607" width="175" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="grq-9d-aSj"/>
                                         </constraints>
@@ -152,15 +152,15 @@
                             <constraint firstItem="2PB-Ut-6Ev" firstAttribute="top" secondItem="00n-h3-CTk" secondAttribute="top" id="V9f-p2-zQ7"/>
                             <constraint firstItem="2PB-Ut-6Ev" firstAttribute="leading" secondItem="00n-h3-CTk" secondAttribute="leading" id="g9f-rj-x2n"/>
                         </constraints>
+                        <connections>
+                            <outlet property="loaderView" destination="GUn-Ol-CIN" id="qkv-9U-dSF"/>
+                            <outlet property="loginButton" destination="gen-x2-Bei" id="3Iv-1A-SED"/>
+                            <outlet property="loginTextField" destination="AxI-36-t5G" id="UMB-qt-kCp"/>
+                            <outlet property="passwordTextField" destination="hO9-S7-WRN" id="grA-Vu-tnf"/>
+                            <outlet property="scrollView" destination="2PB-Ut-6Ev" id="VLP-eV-ZtH"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="0gv-C7-k36"/>
-                    <connections>
-                        <outlet property="loaderView" destination="GUn-Ol-CIN" id="Yfd-rm-DDo"/>
-                        <outlet property="loginButton" destination="gen-x2-Bei" id="aOy-0z-Ysd"/>
-                        <outlet property="loginTextField" destination="AxI-36-t5G" id="KXP-RZ-V1q"/>
-                        <outlet property="passwordTextField" destination="hO9-S7-WRN" id="hM5-FB-Xed"/>
-                        <outlet property="scrollView" destination="2PB-Ut-6Ev" id="bJp-6a-5Kl"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
