@@ -9,7 +9,7 @@ extension UIImageView {
     func load(url: String?) {
         guard let url = url else { return }
         DispatchQueue.global().async {
-            let image = PhotoCacheService.shared.getImage(url: url)
+            let image = PhotoCacheService().getImage(url: url)
             DispatchQueue.main.async {
                 self.image = image
             }

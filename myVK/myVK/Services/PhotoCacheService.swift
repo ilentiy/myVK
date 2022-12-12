@@ -15,10 +15,6 @@ final class PhotoCacheService {
         static let defaultImageName = "photo"
     }
 
-    // MARK: - Static Properties
-
-    static let shared = PhotoCacheService()
-
     // MARK: - Public Properties
 
     var defaultImage: UIImage? = UIImage(systemName: Constants.defaultImageName)
