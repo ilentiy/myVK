@@ -32,6 +32,7 @@
 		09B66A672911C15D00E7BA49 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B66A662911C15D00E7BA49 /* Constants.swift */; };
 		09B66A6A29129ECF00E7BA49 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B66A6929129ECF00E7BA49 /* UIViewController+Extension.swift */; };
 		09C88CEF29476AD1009ED03A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C88CEE29476AD1009ED03A /* LoginView.swift */; };
+		09C88D062947BAEC009ED03A /* DateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C88D052947BAEC009ED03A /* DateFormatter+Extension.swift */; };
 		09D3D9B429106A51007DFCFC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D3D9B329106A51007DFCFC /* AppDelegate.swift */; };
 		09D3D9B629106A51007DFCFC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D3D9B529106A51007DFCFC /* SceneDelegate.swift */; };
 		09D3D9BB29106A51007DFCFC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09D3D9B929106A51007DFCFC /* Main.storyboard */; };
@@ -87,6 +88,7 @@
 		09B66A662911C15D00E7BA49 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		09B66A6929129ECF00E7BA49 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		09C88CEE29476AD1009ED03A /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		09C88D052947BAEC009ED03A /* DateFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extension.swift"; sourceTree = "<group>"; };
 		09D3D9B029106A51007DFCFC /* myVK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myVK.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		09D3D9B329106A51007DFCFC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		09D3D9B529106A51007DFCFC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 				09B66A642911C01200E7BA49 /* UITextField+Extension.swift */,
 				09B66A6929129ECF00E7BA49 /* UIViewController+Extension.swift */,
 				09EB1BD829300723005664A5 /* UIImageView+Extension.swift */,
+				09C88D052947BAEC009ED03A /* DateFormatter+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -728,6 +731,7 @@
 				09D3D9B629106A51007DFCFC /* SceneDelegate.swift in Sources */,
 				09F1084B2914EC52000E8D76 /* ShadowView.swift in Sources */,
 				09A62C7E292D01C400E53700 /* Session.swift in Sources */,
+				09C88D062947BAEC009ED03A /* DateFormatter+Extension.swift in Sources */,
 				0928241D291AF246004EF4D0 /* LoaderView.swift in Sources */,
 				096130A1292D5D88006AF1AC /* NetworkService.swift in Sources */,
 				09E4BBF02913FE0300E78CED /* FriendTableViewCell.swift in Sources */,
