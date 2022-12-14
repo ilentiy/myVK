@@ -12,6 +12,9 @@ final class NewsImageTableViewCell: NewsCell {
     // MARK: Public Methods
 
     func configure(item: News) {
-        postImageView.largeContentTitle = item.text
+        guard let imageName = item.attachments?.first?.photo?.photoUrls.last?.url else { return }
+        DispatchQueue.main.async {
+            self.postImageView.load(url: imageName)
+        }
     }
 }

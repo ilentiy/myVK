@@ -7,19 +7,37 @@ import UIKit
 final class NewsTableViewController: UITableViewController {
     enum NewsCellType: Int, CaseIterable {
         case header
+        case post
         case content
         case footer
     }
 
-    // MARK: - Private Propertieas
+    // MARK: - Private Properties
 
     private let networkService = NetworkService()
     private var news: [News] = []
+    private var isLoading = false
+    private var mostFreshDate: Double?
+    private var nextFrom = ""
 
     // MARK: - LifeCycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        networkFetchNews()
+        setupPullToRefresh()
+    }
+
+    // MARK: - Private Methods
+
+    private func setupPullToRefresh() {
+        refreshControl = UIRefreshControl()
+        refreshControl?.attributedTitle = NSAttributedString(string: "Loading...")
+        refreshControl?.tintColor = .red
+        refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
+    }
+
+    @objc private func refresh() {
         networkFetchNews()
     }
 }
@@ -42,8 +60,10 @@ extension NewsTableViewController {
         switch cellType {
         case .header:
             identifier = Constants.Identifier.TableViewCell.newsHeader
-        case .content:
+        case .post:
             identifier = Constants.Identifier.TableViewCell.newsPost
+        case .content:
+            identifier = Constants.Identifier.TableViewCell.newsImage
         case .footer:
             identifier = Constants.Identifier.TableViewCell.newsFooter
         }
@@ -54,6 +74,50 @@ extension NewsTableViewController {
         cell.configure(item: item)
         return cell
     }
+
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch indexPath.row {
+        case 1:
+            guard let item = news[indexPath.section].text,
+                  !item.isEmpty
+            else { return 0.0 }
+        case 2:
+            if let item = news[indexPath.section].attachments {
+                let tableWidth = tableView.bounds.width
+                let news = item.first?.photo?.photoUrls.last
+                let cellHeigt = tableWidth * (news?.aspectRatio ?? 0.0)
+                return cellHeigt
+            } else {
+                return 0.0
+            }
+        default:
+            return UITableView.automaticDimension
+        }
+        return UITableView.automaticDimension
+    }
+}
+
+// MARK: - Table View Data Source Prefetching
+
+extension NewsTableViewController {
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        guard let maxSection = indexPaths.map(\.section).max() else { return }
+        if maxSection > news.count - 3, !isLoading {
+            isLoading = true
+            networkService.fetchNews(startTime: mostFreshDate ?? 0.0, nextFrom: nextFrom) { [weak self] response in
+                guard let self = self else { return }
+                switch response {
+                case let .success(response):
+                    let indexSet = IndexSet(integersIn: self.news.count ..< self.news.count + response.news.count)
+                    self.news.append(contentsOf: self.news)
+                    self.tableView.insertSections(indexSet, with: .automatic)
+                    self.isLoading = false
+                case let .failure(error):
+                    print(error.localizedDescription)
+                }
+            }
+        }
+    }
 }
 
 // MARK: - Secrvice Method
@@ -62,7 +126,10 @@ extension NewsTableViewController {
     // MARK: - Private Methods
 
     private func networkFetchNews() {
-        networkService.fetchNews { [weak self] result in
+        if let first = news.first {
+            mostFreshDate = Double(first.date) + 1
+        }
+        networkService.fetchNews(startTime: mostFreshDate ?? 0.0, nextFrom: nextFrom) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case let .success(response):
@@ -92,6 +159,7 @@ extension NewsTableViewController {
         DispatchQueue.main.async {
             self.news = response.news
             self.tableView.reloadData()
+            self.refreshControl?.endRefreshing()
         }
     }
 }

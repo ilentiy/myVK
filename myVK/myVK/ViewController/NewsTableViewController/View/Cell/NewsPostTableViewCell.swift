@@ -13,5 +13,6 @@ final class NewsPostTableViewCell: NewsCell {
 
     func configure(item: News) {
         newsTextLabel.text = item.text
+        newsTextLabel.numberOfLines = 5
     }
 }

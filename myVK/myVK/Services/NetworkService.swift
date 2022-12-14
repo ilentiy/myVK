@@ -26,6 +26,8 @@ final class NetworkService {
             static let ownerID = "owner_id"
             static let extended = "extended"
             static let query = "q"
+            static let startTime = "start_time"
+            static let nextFrom = "next_from"
         }
 
         enum ParametersValue {
@@ -48,7 +50,7 @@ final class NetworkService {
         case getPhotoAll(ownerID: Int)
         case getGroups
         case getSearchedGroups(query: String)
-        case getNews
+        case getNews(startTime: Double, nextFrom: String = "")
 
         var path: String {
             switch self {
@@ -81,8 +83,12 @@ final class NetworkService {
                 ]
             case let .getSearchedGroups(query):
                 return [Constants.ParametersKey.query: query]
-            case .getNews:
-                return [Constants.ParametersKey.filters: Constants.ParametersValue.filters]
+            case let .getNews(startTime, nextFrom):
+                return [
+                    Constants.ParametersKey.startTime: startTime,
+                    Constants.ParametersKey.nextFrom: nextFrom,
+                    Constants.ParametersKey.filters: Constants.ParametersValue.filters
+                ]
             }
         }
     }
@@ -112,9 +118,14 @@ final class NetworkService {
         fetchData(.getSearchedGroups(query: query), completion: completion)
     }
 
-    func fetchNews(completion: @escaping (Result<NewsResponse, Error>) -> Void) {
-        let urlPath = "\(Constants.baseURL)\(ApiMethod.getNews.path)"
-        let parametrs = ApiMethod.getNews.parametrs.merging(Constants.baseParameters) { _, _ in }
+    func fetchNews(
+        startTime: Double,
+        nextFrom: String = "",
+        completion: @escaping (Result<NewsResponse, Error>) -> Void
+    ) {
+        let urlPath = "\(Constants.baseURL)\(ApiMethod.getNews(startTime: startTime, nextFrom: nextFrom).path)"
+        let parametrs = ApiMethod.getNews(startTime: startTime, nextFrom: nextFrom).parametrs
+            .merging(Constants.baseParameters) { _, _ in }
         AF.request(urlPath, parameters: parametrs).responseData { response in
             guard let data = response.data else { return }
             do {
