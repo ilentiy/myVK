@@ -34,10 +34,10 @@ final class NewsTableViewController: UITableViewController {
         refreshControl = UIRefreshControl()
         refreshControl?.attributedTitle = NSAttributedString(string: "Loading...")
         refreshControl?.tintColor = .red
-        refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        refreshControl?.addTarget(self, action: #selector(refreshAction), for: .valueChanged)
     }
 
-    @objc private func refresh() {
+    @objc private func refreshAction() {
         networkFetchNews()
     }
 }

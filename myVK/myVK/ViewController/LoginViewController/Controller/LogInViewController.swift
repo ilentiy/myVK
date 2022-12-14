@@ -5,7 +5,7 @@ import UIKit
 
 /// Экран Авторизации
 final class LogInViewController: UIViewController {
-    // MARK: - Properties
+    // MARK: - Visual Components
 
     private var loginView = LoginView()
 

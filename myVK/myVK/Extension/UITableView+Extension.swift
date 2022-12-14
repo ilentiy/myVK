@@ -3,6 +3,7 @@
 
 import UIKit
 
+/// Добавляет сообщение о пустой или не пустой таблице
 extension UITableView {
     func showEmptyMessage(_ message: String) {
         let messageLabel = UILabel()

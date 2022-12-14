@@ -11,7 +11,7 @@ struct NewsResponse: Decodable {
     let users: [User]
     /// Список групп в списке новостей
     let groups: [Group]
-    ///
+    /// Идентификатор получения следующей страницы новостей
     let nextFrom: String?
 
     enum CodingKeys: String, CodingKey {

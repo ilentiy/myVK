@@ -3,6 +3,7 @@
 
 import UIKit
 
+/// Вью Авьоризации
 final class LoginView: UIView {
     // MARK: - Private IBOutlets
 

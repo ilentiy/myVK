@@ -3,8 +3,7 @@
 
 import Foundation
 
-// MARK: Private Methods
-
+/// Преобразование в дату
 extension DateFormatter {
     static func convert(_ date: Int) -> String {
         let date = Date(timeIntervalSince1970: Double(date))
