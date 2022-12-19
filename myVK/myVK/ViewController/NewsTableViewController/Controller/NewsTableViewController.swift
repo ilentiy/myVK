@@ -24,7 +24,7 @@ final class NewsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        networkFetchNews()
+        fetchNews()
         setupPullToRefresh()
     }
 
@@ -38,7 +38,7 @@ final class NewsTableViewController: UITableViewController {
     }
 
     @objc private func refreshAction() {
-        networkFetchNews()
+        fetchNews()
     }
 }
 
@@ -104,18 +104,7 @@ extension NewsTableViewController {
         guard let maxSection = indexPaths.map(\.section).max() else { return }
         if maxSection > news.count - 3, !isLoading {
             isLoading = true
-            networkService.fetchNews(startTime: mostFreshDate ?? 0.0, nextFrom: nextFrom) { [weak self] response in
-                guard let self = self else { return }
-                switch response {
-                case let .success(response):
-                    let indexSet = IndexSet(integersIn: self.news.count ..< self.news.count + response.news.count)
-                    self.news.append(contentsOf: self.news)
-                    self.tableView.insertSections(indexSet, with: .automatic)
-                    self.isLoading = false
-                case let .failure(error):
-                    print(error.localizedDescription)
-                }
-            }
+            fetchNextPageNews()
         }
     }
 }
@@ -125,17 +114,36 @@ extension NewsTableViewController {
 extension NewsTableViewController {
     // MARK: - Private Methods
 
-    private func networkFetchNews() {
+    private func fetchNews() {
         if let first = news.first {
             mostFreshDate = Double(first.date) + 1
         }
-        networkService.fetchNews(startTime: mostFreshDate ?? 0.0, nextFrom: nextFrom) { [weak self] result in
+        networkService.fetchNews(startTime: mostFreshDate ?? 0.0) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case let .success(response):
+                guard let nextFrom = response.nextFrom else { return }
+                self.nextFrom = nextFrom
                 self.newsFilter(response: response)
             case let .failure(error):
                 self.showAlertController(alertTitle: nil, message: error.localizedDescription, actionTitle: nil)
+            }
+        }
+    }
+
+    private func fetchNextPageNews() {
+        networkService.fetchNews(startTime: mostFreshDate ?? 0.0, nextFrom: nextFrom) { [weak self] response in
+            guard let self = self else { return }
+            switch response {
+            case let .success(response):
+                let indexSet = IndexSet(integersIn: self.news.count ..< self.news.count + response.news.count)
+                guard let nextFrom = response.nextFrom else { return }
+                self.nextFrom = nextFrom
+                self.news.append(contentsOf: self.news)
+                self.tableView.insertSections(indexSet, with: .automatic)
+                self.isLoading = false
+            case let .failure(error):
+                print(error.localizedDescription)
             }
         }
     }
@@ -156,10 +164,8 @@ extension NewsTableViewController {
                 news.avatar = user.avatar
             }
         }
-        DispatchQueue.main.async {
-            self.news = response.news
-            self.tableView.reloadData()
-            self.refreshControl?.endRefreshing()
-        }
+        news = response.news
+        tableView.reloadData()
+        refreshControl?.endRefreshing()
     }
 }
