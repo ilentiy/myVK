@@ -1,10 +1,10 @@
-// LogInViewController.swift
+// LoginView.swift
 // Copyright © RoadMap. All rights reserved.
 
 import UIKit
 
-/// Экран Авторизации
-final class LogInViewController: UIViewController {
+/// Вью Авьоризации
+final class LoginView: UIView {
     // MARK: - Private IBOutlets
 
     @IBOutlet private var scrollView: UIScrollView!
@@ -13,46 +13,16 @@ final class LogInViewController: UIViewController {
     @IBOutlet private var loginButton: UIButton!
     @IBOutlet private var loaderView: LoaderView!
 
-    // MARK: - LifeCycle
+    // MARK: - Life Cycle
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func awakeFromNib() {
+        super.awakeFromNib()
         setupUI()
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        removeNotificationCenter()
-    }
+    // MARK: - Public methods
 
-    // MARK: - Public Methods
-
-    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        if identifier == Constants.Identifier.Segue.loginSegue {
-            if checkLogin() {
-                return true
-            } else {
-                showAlertController(
-                    alertTitle: Constants.AlertText.errorTitle,
-                    message: Constants.AlertText.errorText,
-                    actionTitle: Constants.AlertText.actionText
-                )
-                return false
-            }
-        }
-        return false
-    }
-
-    // MARK: - Private methods
-
-    private func setupUI() {
-        installNotificationCenter()
-        loginTextField.setLeftPaddingPoints(10)
-        passwordTextField.setLeftPaddingPoints(10)
-        loaderView.setupUI()
-    }
-
-    private func checkLogin() -> Bool {
+    func checkLogin() -> Bool {
         guard let loginText = loginTextField.text,
               let passwordText = passwordTextField.text
         else { return false }
@@ -61,13 +31,20 @@ final class LogInViewController: UIViewController {
         else { return false }
         return true
     }
+
+    // MARK: - Private methods
+
+    private func setupUI() {
+        loginTextField.setLeftPaddingPoints(10)
+        passwordTextField.setLeftPaddingPoints(10)
+    }
 }
 
 /// Keyboard Notification Center
-extension LogInViewController {
-    // MARK: - Private methods
+extension LoginView {
+    // MARK: - Public methods
 
-    private func installNotificationCenter() {
+    func installNotificationCenter() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboardAction))
         scrollView.addGestureRecognizer(tapGesture)
 
@@ -86,10 +63,12 @@ extension LogInViewController {
         )
     }
 
-    private func removeNotificationCenter() {
+    func removeNotificationCenter() {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
+
+    // MARK: - Private methods
 
     @objc private func keyboardWillShownAction(notification: Notification) {
         guard

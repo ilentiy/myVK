@@ -23,6 +23,9 @@ final class News: Codable {
     /// Текст поста
     let text: String?
 
+    /// Вложения
+    let attachments: [Attachment]?
+
     /// Лайки
     let likes: Likes?
 
@@ -40,6 +43,7 @@ final class News: Codable {
         case date
         case postType = "post_type"
         case text
+        case attachments
         case likes
         case views
     }

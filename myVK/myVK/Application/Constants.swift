@@ -16,6 +16,7 @@ enum Constants {
             static let friend = "Friends"
             static let groups = "Groups"
             static let collection = "Photo"
+            static let postCollection = "PostCollectionCell"
             static let newsHeader = "NewsHeader"
             static let newsPost = "NewsPost"
             static let newsImage = "NewsImage"
